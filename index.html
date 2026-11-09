@@ -349,6 +349,16 @@ blockquote cite{display:block;margin-top:4px;font-style:normal;font-weight:700;c
 .intro-foot .btn{flex:1}
 .intro-foot .pg{font-size:12px;color:var(--muted);font-weight:700;flex:none}
 
+.contact{display:flex;gap:8px;margin-top:10px}
+.contact .btn{flex:1;min-height:42px;font-size:13.5px;text-decoration:none}
+.btn.kakao{background:#fee500;color:#3a1d1d}
+
+.career{line-height:1.6;font-size:13px;margin-top:8px}
+.teacher{padding:10px}
+blockquote{margin-top:10px;padding:8px 12px;font-size:12.5px;line-height:1.55}
+.intro-foot{margin-top:10px}
+.skip{margin-top:10px}
+
 .side-col{display:flex;flex-direction:column;gap:10px;flex:none}
 
 </style>
@@ -1234,6 +1244,7 @@ function introSheet(page) {
         <p class="lab" style="margin:10px 0 6px">진담중국어 덩어리훈련™</p>
         <div class="flow"><span>짝꿍어휘</span>→<span>입에 붙이기</span>→<span>내 문장</span>→<span>즉시반응</span></div>
         <blockquote>틀려도 괜찮지만, 모른 채 지나가지는 않도록.<br>낯선 표현을 다시 만나고, 여러 번 말하며, 결국 내 말로 쓸 수 있을 때까지 함께합니다.<cite>— 진아쌤</cite></blockquote>
+        <div class="contact"><a class="btn kakao" href="https://pf.kakao.com/_jZYxmxj/chat" target="_blank" rel="noopener">💬 카카오톡 문의</a><a class="btn line" href="https://litt.ly/quanlaoshi1799" target="_blank" rel="noopener">⭐ 수강 후기 보기</a></div>
       </div>
       <label class="skip"><input type="checkbox" id="skipIntro" ${S.set.hideIntro ? 'checked' : ''}> 다음부터 이 소개 없이 바로 시작하기</label>
       <div class="intro-foot"><button class="btn line" data-act="intro1" style="flex:0 0 auto">← 이전</button>${dots}<button class="btn primary" data-act="introdone">훈련 시작하기</button></div>`);
@@ -1257,8 +1268,7 @@ const topBar = (title, sub, left) => `<header class="top"><button class="round" 
 function renderHome() {
   const k = counts(), nx = nextLesson(), L = LES(nx), ch = chOf(nx);
   let msg;
-  if (k.seen === 0 && !S.ba.before) msg = '시작 전에 <b>Before 1분 말하기</b>부터! <button class="pill" style="border:0" data-act="ba" data-tab="before">Before 남기기</button>';
-  else if (k.seen === 0) msg = '강의를 들은 뒤 여기서 <b>직접 말하는</b> 훈련을 해요.';
+  if (k.seen === 0) msg = '강의를 들은 뒤 여기서 <b>직접 말하는</b> 훈련을 해요.';
   else if (k.due > REVIEW_CAP) msg = `밀린 복습 <b>${k.due}개</b> · 오늘은 ${REVIEW_CAP}개만 해도 충분해요.`;
   else if (k.due > 0) msg = `다시 만날 문장 <b>${k.due}개</b> · <b>다시 툭!</b>부터 몸을 풀어요.`;
   else msg = `오늘 복습 끝! 다음 훈련은 <b>${pad2(nx)}강</b>이에요.`;
@@ -1646,6 +1656,7 @@ function settingsSheet() {
     <div class="hr"></div>
     <p class="note" style="margin:0 0 10px">숙련 단계는 <b>자가평가</b>예요 · 100개 문장은 검수 전 <b>초안</b>이에요 · 음성은 기기의 중국어 TTS를 써요.</p>
     <button class="btn secondary" style="width:100%;margin-bottom:8px" data-act="introshow">게임 소개 · 진아쌤 소개 다시 보기</button>
+    <div class="contact" style="margin:0 0 8px"><a class="btn kakao" href="https://pf.kakao.com/_jZYxmxj/chat" target="_blank" rel="noopener">💬 카카오톡 문의</a><a class="btn line" href="https://litt.ly/quanlaoshi1799" target="_blank" rel="noopener">⭐ 수강 후기 보기</a></div>
     <button class="btn line" style="width:100%;color:var(--red)" data-act="reset1">모든 기록 지우기</button>
     <p class="tiny" style="text-align:center;margin:12px 0 0">© 2026 진담중국어 (Jindam Chinese). All rights reserved.</p>`);
 }
