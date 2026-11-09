@@ -304,6 +304,51 @@ textarea:focus,input:focus{border-color:var(--green)}
 .tbar i{display:block;height:100%;background:var(--leaf);border-radius:6px}
 .tbar.low i{background:var(--orange)}
 
+/* ── 첫 화면 ── */
+#splash{position:fixed;inset:0;z-index:70;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2vh;text-align:center;padding:24px;
+  background:radial-gradient(ellipse at 50% 18%,#fbf3cf 0,#f7f7ef 55%,#eef2e4 100%);cursor:pointer;transition:opacity .4s,transform .4s}
+#splash.out{opacity:0;transform:scale(1.02);pointer-events:none}
+.sp-glow{position:absolute;left:50%;top:6%;width:70vmin;height:70vmin;margin-left:-35vmin;border-radius:50%;background:radial-gradient(#fff6c9aa,transparent 65%);pointer-events:none}
+.sp-copy{position:relative}
+.sp-promise{margin:0;font-size:13px;letter-spacing:6px;color:#8a8370}
+.sp-brand{margin:4px 0 0;font-size:22px;font-weight:800;color:var(--green);letter-spacing:1px}
+.sp-line{display:block;width:34px;height:2px;background:#b7c4a6;margin:12px auto}
+#splash h1{margin:0;font-size:clamp(30px,9vw,44px);letter-spacing:-1.5px;font-weight:800;color:var(--ink)}
+#splash h1 em{font-style:normal;color:var(--orange)}
+.sp-sub{margin:6px 0 0;color:var(--muted);font-size:14px}
+.sp-hero{width:min(54vw,240px);aspect-ratio:200/190;position:relative}
+.sp-hero svg{width:100%;height:100%}
+.sp-start{border:0;background:none;color:var(--ink);display:flex;flex-direction:column;gap:4px;align-items:center;padding:8px 16px}
+.sp-start b{font-size:18px;animation:blink 1.4s ease-in-out infinite}
+.sp-start small{font-size:12px;color:var(--muted)}
+@keyframes blink{50%{opacity:.35}}
+.sp-copy-r{position:absolute;bottom:max(12px,env(safe-area-inset-bottom));left:0;right:0;margin:0;font-size:10.5px;color:#9aa198}
+/* ── 소개 팝업 ── */
+.intro .lead{margin:0 0 12px;font-size:14px;line-height:1.65}
+.intro .lead b{color:var(--green)}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.steps>div{background:var(--light);border-radius:14px;padding:10px 10px 10px 40px;position:relative;min-height:62px}
+.steps i{position:absolute;left:10px;top:10px;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;font-style:normal;font-weight:800;font-size:12px;display:grid;place-items:center}
+.steps b{display:block;font-size:13.5px}
+.steps small{display:block;font-size:11.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+.intro .goal{margin:12px 0 6px;text-align:center;font-weight:800;color:#a8532c;font-size:14px}
+.intro .tip{margin:0;font-size:12.5px;color:var(--muted);text-align:center;line-height:1.6}
+.intro .tip b{color:var(--ink)}
+.teacher{display:flex;align-items:center;gap:12px;background:var(--cream);border-radius:16px;padding:12px}
+.teacher .t-ic{width:52px;height:52px;flex:none}.teacher .t-ic svg{width:100%;height:100%}
+.teacher b{display:block;font-size:18px}.teacher b small{font-size:13px;color:var(--green);margin-left:4px}
+.teacher span{font-size:12px;color:var(--muted)}
+.career{margin:10px 0 0;padding:0 0 0 18px;font-size:13.5px;line-height:1.75}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:4px;color:var(--muted);font-size:12px}
+.flow span{background:var(--light);color:var(--green);font-weight:700;border-radius:20px;padding:4px 10px;font-size:12.5px}
+blockquote{margin:12px 0 0;background:#fbf3e3;border-left:4px solid var(--orange);border-radius:0 12px 12px 0;padding:10px 12px;font-size:13px;line-height:1.65;color:#5b5140}
+blockquote cite{display:block;margin-top:4px;font-style:normal;font-weight:700;color:#a8532c;font-size:12px}
+.skip{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);margin:12px 0 0}
+.skip input{accent-color:var(--green);width:16px;height:16px}
+.intro-foot{display:flex;align-items:center;gap:10px;margin-top:12px}
+.intro-foot .btn{flex:1}
+.intro-foot .pg{font-size:12px;color:var(--muted);font-weight:700;flex:none}
+
 .side-col{display:flex;flex-direction:column;gap:10px;flex:none}
 
 </style>
@@ -1142,6 +1187,59 @@ function runClock(sec, el, onEnd) {
 }
 
 
+
+/* ═════════ 0. 첫 화면 → 소개 팝업(게임 소개 · 진아쌤 소개) → 메인 ═════════ */
+function showSplash() {
+  const sp = document.createElement('section');
+  sp.id = 'splash'; sp.setAttribute('aria-label', '시작 화면');
+  sp.innerHTML = `<div class="sp-glow"></div>
+    <div class="sp-copy"><p class="sp-promise">진심을 담은 중국어</p><p class="sp-brand">진담중국어</p><span class="sp-line"></span>
+      <h1>진담 100문장 <em>툭!</em></h1><p class="sp-sub">외운 중국어를, 내 입에서 툭!</p></div>
+    <div class="sp-hero">${liftSVG()}</div>
+    <button class="sp-start" id="spStart"><b>아무 키나 눌러 주세요</b><small>화면을 눌러도 시작해요</small></button>
+    <p class="sp-copy-r">© 2026 진담중국어(전진아). All rights reserved. 무단 복제·배포 금지</p>`;
+  document.body.appendChild(sp);
+  let gone = false;
+  const go2 = ev => {
+    if (gone) return; if (ev && ev.type === 'keydown' && ['Shift', 'Control', 'Alt', 'Meta', 'Tab'].includes(ev.key)) return;
+    gone = true; document.removeEventListener('keydown', go2, true); blip('tap');
+    sp.classList.add('out'); setTimeout(() => sp.remove(), 450);
+    go('home');
+    if (!S.set.hideIntro) introSheet(1);
+  };
+  sp.addEventListener('click', go2);
+  document.addEventListener('keydown', go2, true);
+}
+function introSheet(page) {
+  const dots = `<span class="pg">${page} / 2</span>`;
+  if (page === 1) {
+    openModal(`${sheetHead('🌱 게임 소개')}
+      <div class="intro">
+        <p class="lead"><b>진담 100문장 툭!</b>에 오신 걸 환영해요.<br>단어와 문법은 아는데 막상 말하려면 안 나오나요? 이곳은 클래스101 강의에서 배운 문장을 <b>혼자서 직접 말해 보고, 복습하고, 성장을 확인하는 훈련장</b>이에요.</p>
+        <div class="steps">
+          <div><i>1</i><b>덩어리 맞추기</b><small>짧은 덩어리부터 늘려 가며 문장 완성</small></div>
+          <div><i>2</i><b>보고 말하기</b><small>한국어만 보고 중국어로 툭!</small></div>
+          <div><i>3</i><b>내 문장 툭!</b><small>내 이야기로 바꿔 말하기</small></div>
+          <div><i>↻</i><b>다시 툭!</b><small>헷갈린 문장은 알맞은 때 다시 와요</small></div>
+        </div>
+        <p class="goal">🎯 4주 · 20강 · 목표 문장 100개</p>
+        <p class="tip">카드를 누를 때마다 <b>꼭 소리 내어</b> 말해 주세요. 눈으로만 볼 때보다 훨씬 오래 입에 남아요.</p>
+      </div>
+      <div class="intro-foot">${dots}<button class="btn primary" data-act="intro2">다음 · 진아쌤 소개 →</button></div>`);
+  } else {
+    openModal(`${sheetHead('👩‍🏫 진아쌤 소개')}
+      <div class="intro">
+        <div class="teacher"><span class="t-ic">${BRAND}</span><div><b>전진아 <small>진아쌤</small></b><span>진담중국어 · 진심을 담은 중국어</span></div></div>
+        <ul class="career"><li>중국어교육 석사</li><li>前 중국교육부 파견강사</li><li>서울공자학원 HSK 5~6급 · HSK 강사양성과정 담당</li><li>전문 분야: 중국어 스피킹 · 덩어리 표현 · 즉시반응 · 문장 확장</li></ul>
+        <p class="lab" style="margin:10px 0 6px">진담중국어 덩어리훈련™</p>
+        <div class="flow"><span>짝꿍어휘</span>→<span>입에 붙이기</span>→<span>내 문장</span>→<span>즉시반응</span></div>
+        <blockquote>틀려도 괜찮지만, 모른 채 지나가지는 않도록.<br>낯선 표현을 다시 만나고, 여러 번 말하며, 결국 내 말로 쓸 수 있을 때까지 함께합니다.<cite>— 진아쌤</cite></blockquote>
+      </div>
+      <label class="skip"><input type="checkbox" id="skipIntro" ${S.set.hideIntro ? 'checked' : ''}> 다음부터 이 소개 없이 바로 시작하기</label>
+      <div class="intro-foot"><button class="btn line" data-act="intro1" style="flex:0 0 auto">← 이전</button>${dots}<button class="btn primary" data-act="introdone">훈련 시작하기</button></div>`);
+  }
+}
+
 /* ═════════ 8. 화면 전환 ═════════ */
 let screen = 'home', SES = null, timerInt = null, homeInt = null;
 function go(name, arg) {
@@ -1547,6 +1645,7 @@ function settingsSheet() {
     <div id="bk"></div>
     <div class="hr"></div>
     <p class="note" style="margin:0 0 10px">숙련 단계는 <b>자가평가</b>예요 · 100개 문장은 검수 전 <b>초안</b>이에요 · 음성은 기기의 중국어 TTS를 써요.</p>
+    <button class="btn secondary" style="width:100%;margin-bottom:8px" data-act="introshow">게임 소개 · 진아쌤 소개 다시 보기</button>
     <button class="btn line" style="width:100%;color:var(--red)" data-act="reset1">모든 기록 지우기</button>
     <p class="tiny" style="text-align:center;margin:12px 0 0">© 2026 진담중국어 (Jindam Chinese). All rights reserved.</p>`);
 }
@@ -1558,6 +1657,10 @@ document.addEventListener('click', e => {
   const a = el.dataset.act, d = el.dataset;
   switch (a) {
     case 'home': go('home'); break;
+    case 'intro1': introSheet(1); break;
+    case 'intro2': introSheet(2); break;
+    case 'introdone': { const c = $('#skipIntro'); S.set.hideIntro = !!(c && c.checked); save(); closeModal(); say('좋아요! 오늘도 <b>소리 내어</b> 툭!', 'win'); break; }
+    case 'introshow': introSheet(1); break;
     case 'close': closeModal(); break;
     case 'lessons': openLessons(+d.ch || 0); break;
     case 'lesson': lessonSheet(+d.n); break;
@@ -1657,7 +1760,7 @@ document.addEventListener('keydown', e => {
   else { if (k === '1' || k === 'arrowleft') drillAct('again'); else if (k === '2' || k === 'enter' || k === 'arrowright') { e.preventDefault(); drillAct('ok'); } else if (k === 's') speak(BYID[SES.q[SES.i].id].zh); }
 });
 
-go('home');
+showSplash();
 })();
 
 </script>
