@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f7ef">
+<meta name="author" content="진담중국어 (Jindam Chinese)">
+<!-- © 2026 진담중국어 (Jindam Chinese). All rights reserved. -->
+<title>진담 100문장 툭!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f7ef; --ink:#263f36; --muted:#778077; --green:#315e48; --green2:#254b39; --light:#edf2e8; --line:#e3e7dc;
+  --leaf:#aac875; --leafd:#5d8a4a; --orange:#db794c; --red:#b94b3d; --sun:#f6e3a8; --cream:#faf8f1; --soft:#dce7d3;
+  --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",Arial,sans-serif;
+  --zh:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;overflow:hidden}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+button:disabled{opacity:.45;cursor:default}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.zh{font-family:var(--zh)}
+#app{height:100vh;height:100dvh;max-width:540px;margin:0 auto;display:flex;flex-direction:column;gap:10px;
+  padding:max(10px,env(safe-area-inset-top)) 14px max(12px,env(safe-area-inset-bottom));overflow:hidden}
+.fill{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.scroll{overflow:auto;min-height:0}
+.none{flex:none}
+.row{display:flex;align-items:center;gap:8px}
+.grow{flex:1;min-width:0}
+.muted{color:var(--muted)} .tiny{font-size:11px;color:var(--muted)}
+
+/* ── 상단바 ── */
+.top{display:flex;align-items:center;gap:10px;flex:none;min-height:44px}
+.brand{display:flex;align-items:center;gap:9px;flex:1;min-width:0}
+.top .round+.round{margin-left:-2px}
+.brand-icon{width:38px;height:38px;flex:none}
+.brand-icon svg{width:100%;height:100%;display:block}
+.brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:.5px;line-height:1.2}
+.brand strong{display:block;font-size:17px;font-weight:800;letter-spacing:-.4px;line-height:1.25;white-space:nowrap}
+.brand strong em{font-style:normal;color:#5d8a4a}
+.top h2{margin:0;font-size:17px;font-weight:800;letter-spacing:-.4px;line-height:1.25;flex:1;min-width:0}
+.top h2 small{display:block;font-size:11.5px;font-weight:500;color:var(--muted);letter-spacing:0}
+.round{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;flex:none;padding:0;color:var(--green)}
+.round svg{width:20px;height:20px}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;border-radius:30px;padding:4px 10px;background:var(--soft);color:var(--green);white-space:nowrap}
+.pill.white{background:#fffffff0;box-shadow:0 2px 8px #263f3614}
+.pill.orange{background:#fbe6db;color:#a8532c}
+.pill.gold{background:var(--sun);color:#8a5a12}
+
+/* ── 버튼 ── */
+.btn{border:0;border-radius:13px;min-height:50px;padding:10px 16px;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;line-height:1.25;text-align:center;transition:.15s}
+.btn small{display:block;font-size:11px;font-weight:500;opacity:.85}
+.btn.primary{background:var(--green);color:#fff}
+.btn.primary:hover{background:var(--green2)}
+.btn.secondary{background:var(--light);color:var(--green)}
+.btn.line{background:#fff;color:var(--green);border:1.5px solid var(--line)}
+.btn.orange{background:var(--orange);color:#fff}
+.btn.warn{background:var(--red);color:#fff}
+.btn:active{transform:translateY(1px)}
+.btns{display:flex;gap:8px;flex:none}
+.btns>.btn{flex:1}
+.btn .k{font-size:10px;opacity:.55;border:1px solid currentColor;border-radius:4px;padding:0 4px;font-weight:500}
+.cta{display:flex;gap:8px;flex:none}
+.cta .go{flex:1;justify-content:space-between;text-align:left;min-height:62px;border-radius:16px;padding:10px 18px}
+.cta .go b{font-size:16px;display:block}
+.cta .go .arrow{font-size:22px;font-weight:400}
+.cta .side{width:72px;flex:none;flex-direction:column;gap:2px;font-size:11px;border-radius:16px;min-height:62px;padding:6px}
+.cta .side svg{width:22px;height:22px}
+
+/* ── 홈: 숲 장면 ── */
+.scene{position:relative;flex:none;aspect-ratio:1/1;width:min(100%,calc(100dvh - 268px));margin:0 auto;container-type:size;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#e9efe0 center/cover no-repeat}
+.scene .tl{position:absolute;left:12px;top:12px;display:flex;flex-direction:column;align-items:flex-start;gap:5px;max-width:65%}
+.scene .tr{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.scene .stage{position:absolute;left:0;right:0;bottom:62px;top:40px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.scene .bubble{position:relative;background:#fff;border-radius:16px;padding:9px 13px;font-size:13px;line-height:1.5;max-width:min(300px,86%);box-shadow:0 6px 18px #263f361f;margin-bottom:10px;text-align:center}
+.scene .bubble::after{content:"";position:absolute;left:50%;bottom:-7px;margin-left:-7px;border:7px solid transparent;border-top-color:#fff;border-bottom:0}
+.scene .bubble b{color:var(--green)}
+.scene .meter{position:absolute;left:10px;right:10px;bottom:10px;background:#ffffffe8;border-radius:16px;padding:8px 12px;backdrop-filter:blur(4px)}
+.meter .nums{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-bottom:5px}
+.meter .nums b{color:var(--ink);font-size:13px}
+.bar2{position:relative;height:9px;border-radius:9px;background:#e6eadd;overflow:hidden}
+.bar2 u{position:absolute;left:0;top:0;bottom:0;background:#b7cfa3;border-radius:9px}
+.bar2 i{position:absolute;left:0;top:0;bottom:0;background:var(--green);border-radius:9px}
+.bar2 s{position:absolute;top:0;bottom:0;width:2px;background:#ffffffcc}
+.tuk{display:block;cursor:pointer;background:none;border:0;padding:0}
+.tuk svg{display:block;width:100%;height:100%}
+.tuk.big{width:118px;height:118px}
+.tuk.breathe svg{animation:breathe 3.5s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes breathe{50%{transform:translateY(-4px) rotate(1.5deg)}}
+.tuk.hop svg{animation:hop .55s ease-out 1}
+@keyframes hop{40%{transform:translateY(-14px) scale(1.04)}}
+.tuk.shake svg{animation:nod .5s ease 1}
+@keyframes nod{30%{transform:rotate(-6deg)}70%{transform:rotate(5deg)}}
+
+/* ── 홈: 메뉴 타일 ── */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;flex:none}
+.tile{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 6px 9px;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;min-height:78px;justify-content:center}
+.tile:hover{border-color:var(--green)}
+.tile .ic{width:34px;height:34px;border-radius:11px;background:var(--light);color:var(--green);display:grid;place-items:center}
+.tile .ic svg{width:20px;height:20px}
+.tile b{font-size:12.5px;letter-spacing:-.3px;line-height:1.2}
+.tile small{font-size:10px;color:var(--muted);line-height:1.2}
+.tile .badge{position:absolute;top:6px;right:7px;min-width:19px;height:19px;border-radius:10px;background:var(--orange);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px}
+.tile.t-order .ic{background:#fbf0d6;color:#a5701b}
+.tile.t-review .ic{background:#fbe6db;color:#b55d34}
+.tile.t-mine .ic{background:#e7eef6;color:#3f6788}
+.tile.t-report .ic{background:#efe9f6;color:#6d5596}
+.tile.t-ba .ic{background:#f6e8ee;color:#a04f6c}
+
+/* ── 시트(모달) ── */
+.modal{position:fixed;inset:0;z-index:40;background:#1e362d66;backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center}
+.modal[hidden]{display:none}
+.sheet{width:100%;max-width:540px;max-height:90dvh;overflow:auto;background:#fff;border-radius:26px 26px 0 0;padding:18px 18px max(18px,env(safe-area-inset-bottom));box-shadow:0 -10px 40px #243e3633;animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:.4}}
+@media (min-width:700px){.modal{align-items:center}.sheet{border-radius:26px;max-width:460px}}
+.sheet h3{margin:0;font-size:19px;letter-spacing:-.5px}
+.sheet .head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.tabs{display:flex;background:var(--light);border-radius:13px;padding:4px;gap:4px;flex:none}
+.tabs button{flex:1;border:0;background:transparent;border-radius:10px;padding:8px 4px;font-size:13px;font-weight:700;color:var(--muted)}
+.tabs button.on{background:#fff;color:var(--green);box-shadow:0 2px 6px #263f3614}
+.lrow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-top:8px}
+.lrow:hover{border-color:var(--green)}
+.lrow .num{width:36px;height:36px;border-radius:11px;background:var(--light);color:var(--green);font-weight:800;display:grid;place-items:center;flex:none;font-size:14px}
+.lrow.cp .num{background:var(--sun);color:#8a5a12}
+.lrow.next{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.lrow b{display:block;font-size:14.5px;letter-spacing:-.3px}
+.lrow small{display:block;font-size:11px;color:var(--muted)}
+.pips{display:flex;gap:3px}
+.pips i{width:8px;height:8px;border-radius:50%;background:#e1e6d9}
+.lv0{background:#e1e6d9!important}.lv1{background:#c9d6bb!important}.lv2{background:#8fb07a!important}.lv3{background:#4f8a62!important}.lv4{background:#e0a33a!important}
+.slist{list-style:none;margin:6px 0 12px;padding:0}
+.slist li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.slist li:last-child{border-bottom:0}
+.slist .zh{font-weight:700;font-size:15px}
+.slist small{display:block;font-size:11.5px;color:var(--muted)}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+
+/* ── 학습 화면 ── */
+.prog{height:6px;border-radius:6px;background:#e6eadd;overflow:hidden;flex:none;display:flex;gap:2px}
+.prog i{flex:1;background:#e6eadd}
+.prog i.ok{background:var(--green)} .prog i.no{background:#e4a98b} .prog i.cur{background:var(--leaf)}
+.coach{display:flex;align-items:center;gap:8px;flex:none}
+.coach .tuk{width:52px;height:52px;flex:none}
+.coach .say{position:relative;flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:9px 12px;font-size:13px;line-height:1.45;min-height:42px}
+.coach .say::before{content:"";position:absolute;left:-7px;top:50%;margin-top:-6px;border:6px solid transparent;border-right-color:var(--line);border-left:0}
+.coach .say::after{content:"";position:absolute;left:-5px;top:50%;margin-top:-5px;border:5px solid transparent;border-right-color:#fff;border-left:0}
+.coach .say b{color:var(--green)}
+.card{flex:1;min-height:0;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:24px;padding:16px 18px;display:flex;flex-direction:column;box-shadow:0 6px 24px #263f360a}
+.card .meta{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);margin-bottom:10px;flex:none}
+.card .lbl{font-size:12px;color:var(--muted);margin-bottom:3px}
+.card .prompt{font-size:21px;font-weight:800;letter-spacing:-.6px;line-height:1.4;word-break:keep-all}
+.card .qzh{font-family:var(--zh);font-size:25px;font-weight:700;line-height:1.4;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .cue{margin-top:6px;font-size:13px;color:var(--muted)}
+.card .center{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--muted)}
+.hint{margin-top:12px;background:var(--cream);border-radius:14px;padding:10px 12px;font-size:12px;color:#83776b}
+.hint .f{font-family:var(--zh);font-size:18px;font-weight:700;color:var(--green);margin:1px 0 4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chips span{font-family:var(--zh);font-weight:700;font-size:15px;background:var(--sun);color:#6b4a10;border-radius:8px;padding:2px 10px}
+.ans{margin-top:12px;padding-top:12px;border-top:1px dashed #d8dccf}
+.ans .zhs{font-family:var(--zh);font-size:26px;font-weight:700;line-height:1.45;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ans .py{font-size:14.5px;color:#4c7a62;margin-top:2px}
+.ans .ko{font-size:13.5px;color:var(--muted);margin-top:3px}
+.ans .fr{font-size:12px;color:var(--muted);margin-top:8px}
+.ans .fr b{font-family:var(--zh);font-size:15px;color:var(--green)}
+mark{background:linear-gradient(transparent 60%,#f6dd94 60%);color:inherit;padding:0 1px}
+.rt{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:#8a5a12;background:var(--sun);border-radius:20px;padding:3px 10px}
+.spk{width:38px;height:38px;border-radius:50%;border:0;background:var(--light);color:var(--green);display:inline-grid;place-items:center;padding:0;flex:none}
+.spk svg{width:20px;height:20px}
+.keys{font-size:11px;color:var(--muted);text-align:center;flex:none;margin-top:-4px}
+
+/* 덩어리 맞추기 */
+.rail{display:flex;flex-wrap:wrap;gap:7px;align-items:center;min-height:62px;margin-top:14px;padding:10px;background:var(--cream);border-radius:16px;border:1.5px dashed #d9d2bd}
+.slot{width:52px;height:44px;border-radius:11px;border:1.5px dashed #cfc6ad;background:#fff8}
+.endp{font-family:var(--zh);font-size:21px;font-weight:700;color:var(--muted)}
+.oc{position:relative;font-family:var(--zh);font-weight:700;font-size:20px;line-height:1.2;padding:9px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);box-shadow:0 3px 0 #dfe4d6;min-height:46px}
+.oc:active{transform:translateY(2px);box-shadow:0 1px 0 #dfe4d6}
+.oc.placed{background:#fff;border-color:#c8d4bb}
+.oc.good{background:#e3eedb;border-color:var(--leafd);color:var(--green);box-shadow:none}
+.oc.bad{background:#fbe2d7;border-color:var(--orange);color:#9b4522;box-shadow:none}
+.oc.used{visibility:hidden}
+.oc:disabled{opacity:1}
+.oc .n{position:absolute;top:-8px;left:-6px;font-family:var(--sans);font-size:10px;font-weight:700;background:var(--green);color:#fff;border-radius:6px;padding:0 5px;line-height:1.6}
+.tray{display:flex;flex-wrap:wrap;gap:12px 9px;justify-content:center;margin-top:18px;padding-top:4px}
+.shakex{animation:shk .3s ease 2}
+@keyframes shk{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* ── 결과 ── */
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;flex:none}
+.done .tuk{width:96px;height:96px}
+.done h3{margin:2px 0 0;font-size:21px;letter-spacing:-.6px}
+.done p{margin:0;font-size:13px;color:var(--muted)}
+.stats{display:flex;gap:8px;flex:none}
+.stats>div{flex:1;background:var(--light);border-radius:14px;padding:10px 4px;text-align:center}
+.stats strong{display:block;font-size:21px;line-height:1.2}
+.stats span{font-size:10.5px;color:var(--muted)}
+.box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:12px 14px}
+.box h4{margin:0 0 4px;font-size:14px}
+
+/* ── 내 문장 ── */
+.picker{display:flex;align-items:center;gap:10px;width:100%;background:#fff;border:1px solid var(--line);border-radius:14px;padding:9px 12px;text-align:left;flex:none}
+.picker .zh{font-weight:700;font-size:15px;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.picker small{color:var(--green);font-weight:700;font-size:12px;flex:none}
+textarea,input[type=number]{width:100%;border:1.5px solid var(--line);border-radius:13px;background:#fff;padding:10px 12px;font-size:17px;font-family:var(--zh),var(--sans);color:var(--ink);outline:none;resize:none}
+textarea:focus,input:focus{border-color:var(--green)}
+.cnt3{display:flex;gap:6px}
+.cnt3 button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:11px;min-height:40px;font-weight:700;font-size:13px;color:var(--muted)}
+.cnt3 button.on{background:var(--green);border-color:var(--green);color:#fff}
+.lab{font-size:12px;font-weight:700;color:var(--muted);margin:10px 0 5px}
+
+/* ── 리포트 ── */
+.blocks{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+.block h5{margin:0 0 5px;font-size:11.5px;color:var(--muted);font-weight:700}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.g5 button{aspect-ratio:1;border-radius:7px;border:0;padding:0;min-width:0}
+.g5 button.cpc{box-shadow:inset 0 0 0 2px #e0a33a}
+.legend{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:11px;color:var(--muted)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:3px;vertical-align:0}
+.lvbars .r{display:flex;align-items:center;gap:8px;font-size:12px;margin:5px 0}
+.lvbars .r>span:first-child{width:62px;font-weight:700}
+.lvbars .r .b{flex:1;height:8px;border-radius:8px;background:#e6eadd;overflow:hidden}
+.lvbars .r .b i{display:block;height:100%;border-radius:8px}
+.lvbars .r>span:last-child{width:28px;text-align:right;font-weight:700}
+.cmp{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px 8px;font-size:13px;align-items:center}
+.cmp .h{font-size:11px;font-weight:700;color:var(--muted);text-align:center}
+.cmp .v{font-size:18px;font-weight:800;text-align:center;background:var(--light);border-radius:10px;padding:4px 0}
+.cmp .v.a{background:#e3eedb;color:var(--green)}
+
+/* ── 실력 확인 ── */
+.clock{font-size:64px;font-weight:800;letter-spacing:-2px;text-align:center;line-height:1;color:var(--green);font-variant-numeric:tabular-nums}
+.cues{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.cues span{background:var(--light);color:var(--green);border-radius:20px;padding:4px 11px;font-size:12.5px;font-weight:700}
+.form label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin:8px 0 4px}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.seg{display:flex;gap:6px}
+.seg button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:8px 4px;font-weight:700;font-size:13px;color:var(--muted)}
+.seg button.on{border-color:var(--green);color:var(--green);background:var(--light)}
+
+#toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:60;background:var(--ink);color:#fff;border-radius:30px;font-size:13.5px;font-weight:700;padding:10px 18px;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center;box-shadow:0 8px 24px #0003}
+#toast.on{opacity:1}
+.fx{position:fixed;pointer-events:none;z-index:50;font-size:18px}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+.hr{height:1px;background:var(--line);margin:12px 0}
+
+@media (max-height:640px){
+  .tile{min-height:64px;padding:7px 4px}
+  .tile small{display:none}
+  .cta .go{min-height:54px}.cta .side{min-height:54px}
+  .tuk.big{width:92px;height:92px}
+  .scene .bubble{font-size:12px;padding:7px 11px}
+  .coach .tuk{width:42px;height:42px}
+  .card{padding:12px 14px}
+  .card .prompt{font-size:19px}
+  .ans .zhs{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.desk-intro{display:none}
+@media (min-width:860px){.desk-intro{display:block}.desk-intro p{margin:0;color:var(--muted);font-size:13px}.desk-intro .eb{font-size:10px;letter-spacing:2px;font-weight:700;color:var(--green);margin-bottom:6px}.desk-intro h2{margin:0 0 4px;font-size:26px;letter-spacing:-.8px}}
+
+.btn.main{justify-content:space-between;text-align:left;min-height:84px;border-radius:20px;padding:12px 20px;flex:none}
+.btn.main b{display:block;font-size:19px;letter-spacing:-.5px;margin:1px 0}
+.btn.main small{font-size:11.5px;opacity:.8}
+.btn.main .steps{margin-top:2px;opacity:.95;font-weight:700;color:#d9ead0}
+.btn.main .arrow{font-size:26px;font-weight:400}
+.sub3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;flex:none}
+.sub3 .btn{position:relative;flex-direction:column;gap:3px;min-height:68px;border-radius:16px;font-size:13px;padding:8px 4px}
+.sub3 .btn svg{width:22px;height:22px}
+.sub3 .badge{position:absolute;top:6px;right:8px;min-width:19px;height:19px;border-radius:10px;background:var(--orange);color:#fff;font-size:11px;font-style:normal;font-weight:700;display:grid;place-items:center;padding:0 5px}
+
+@media (max-height:640px){.btn.main{min-height:70px}.sub3 .btn{min-height:58px}}
+
+#app.home{justify-content:center}
+.scene .tl{left:3.5%;top:3.5%}.scene .tr{right:3.5%;top:3.5%}
+.scene .pill{font-size:max(10px,3.2cqw)}
+.board{position:absolute;left:50%;top:12%;transform:translateX(-50%);width:72%;background:#2f4a3c;border:max(4px,1.4cqw) solid #b48a5f;border-radius:12px;color:#f4f1e4;text-align:center;padding:1.8cqw 3cqw 2.2cqw;box-shadow:0 6px 14px #0003;z-index:1}
+.board small{display:block;font-size:max(10px,3.1cqw);opacity:.75;letter-spacing:.3px}
+.board>b{display:block;font-size:max(14px,5cqw);line-height:1.3;color:#fffbe8;margin:.3cqw 0}
+.board p{margin:0;font-size:max(10.5px,3.2cqw);line-height:1.45;color:#dfe9d6}
+.board p b{color:#ffe6a0}
+.board .pill{font-size:max(10px,3cqw);padding:2px 9px;vertical-align:1px}
+.trainer{position:absolute;left:50%;bottom:16%;width:52%;aspect-ratio:200/190;transform:translateX(-50%);border:0;background:none;padding:0;z-index:2}
+.trainer .pose{position:absolute;inset:0;opacity:0;transition:opacity .45s}
+.trainer .pose.on{opacity:1}
+.trainer svg{width:100%;height:100%;display:block}
+.trainer.bump{animation:bump .4s ease}
+@keyframes bump{40%{transform:translateX(-50%) scale(1.06)}}
+.scene .meter{left:3%;right:3%;bottom:2.5%;padding:1.6cqw 3cqw}
+.desk-intro{display:none!important}
+@media (min-width:860px){#app.home{max-width:560px}}
+
+.scene.gym{background:#eef0e4}
+.gymbg{position:absolute;inset:0}.gymbg svg{width:100%;height:100%;display:block}
+
+.oc{text-align:center;display:inline-flex;flex-direction:column;align-items:center;justify-content:center}
+.oc small.py{display:block;font-family:var(--sans);font-size:11px;font-weight:500;color:#6c8a78;line-height:1.2;margin-bottom:1px}
+.oc.good small.py{color:var(--green)}
+.cd{font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;font-size:13px}
+.tbar{height:6px;border-radius:6px;background:#e6eadd;margin-top:10px;overflow:hidden}
+.tbar i{display:block;height:100%;background:var(--leaf);border-radius:6px}
+.tbar.low i{background:var(--orange)}
+
+.side-col{display:flex;flex-direction:column;gap:10px;flex:none}
+
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="modal" class="modal" hidden></div>
+<script>
+/* ───────────────────────────────────────────────
+   진담 100문장 툭! — 학습 데이터 (초안)
+   ※ 전문가 검수 전 샘플입니다. 이 배열만 바꾸면 게임 전체에 반영됩니다.
+   각 문장: [중국어, 병음, 한국어 뜻, 중국어 질문(없으면 ''), 문장틀, 짝꿍어휘(| 구분), 바꿔 말하기 재료]
+   ─────────────────────────────────────────────── */
+const CHAPTERS = [
+  { n: 1, t: '아는 단어로 내 이야기 말하기', goal: '취향·계획·생각을 이어 약 30초 말하기' },
+  { n: 2, t: '한 문장에서 두세 문장으로', goal: '계획·취향에 이유·경험을 붙여 약 40초 말하기' },
+  { n: 3, t: '질문을 듣고 즉시 대답하기', goal: '무작위 질문 10개에 바로 대답하기' },
+  { n: 4, t: '실전 대화에서 내 중국어 꺼내기', goal: '경험과 의견을 묶어 1분 자유 말하기' }
+];
+
+const LESSONS = [
+  { n: 1, t: '나를 소개하기', g: '我是… · 我叫… · 我住在…', s: [
+    ['我是韩国人。', 'Wǒ shì Hánguó rén.', '저는 한국 사람이에요.', '你是哪国人？', '我是 ___ 人', '我是|韩国人', '中国 · 日本 · 美国'],
+    ['我叫金民秀，你可以叫我民秀。', 'Wǒ jiào Jīn Mínxiù, nǐ kěyǐ jiào wǒ Mínxiù.', '제 이름은 김민수예요. 민수라고 불러도 돼요.', '你叫什么名字？', '我叫 ___，你可以叫我 ___', '我叫|你可以叫我', '내 이름 · 내 별명'],
+    ['我在公司上班。', 'Wǒ zài gōngsī shàngbān.', '저는 회사에 다녀요.', '你在哪儿工作？', '我在 ___ 上班', '在|公司|上班', '银行 · 医院 · 学校'],
+    ['我住在首尔。', 'Wǒ zhù zài Shǒu\'ěr.', '저는 서울에 살아요.', '你住在哪儿？', '我住在 ___', '住在|首尔', '釜山 · 仁川 · 公司附近'],
+    ['我学了一年中文。', 'Wǒ xuéle yì nián Zhōngwén.', '중국어를 1년 배웠어요.', '你学了多长时间中文？', '我学了 ___ 中文', '学了|一年|中文', '三个月 · 半年 · 两年']
+  ]},
+  { n: 2, t: '하고 싶은 일 말하기', g: '我想…', s: [
+    ['我想去中国旅游。', 'Wǒ xiǎng qù Zhōngguó lǚyóu.', '중국에 여행 가고 싶어요.', '你想去哪儿旅游？', '我想去 ___ 旅游', '我想|去|旅游', '台湾 · 上海 · 济州岛'],
+    ['我想学做中国菜。', 'Wǒ xiǎng xué zuò Zhōngguó cài.', '중국 요리 만드는 걸 배우고 싶어요.', '你想学什么？', '我想学 ___', '我想|学做|中国菜', '游泳 · 画画儿 · 弹吉他'],
+    ['我今天想早点儿回家。', 'Wǒ jīntiān xiǎng zǎo diǎnr huí jiā.', '오늘은 좀 일찍 집에 가고 싶어요.', '你今天想做什么？', '我今天想 ___', '想|早点儿|回家', '早点儿睡觉 · 去散步 · 吃火锅'],
+    ['我想喝一杯咖啡。', 'Wǒ xiǎng hē yì bēi kāfēi.', '커피 한 잔 마시고 싶어요.', '你想喝什么？', '我想喝一杯 ___', '想喝|一杯|咖啡', '茶 · 奶茶 · 果汁'],
+    ['我想跟中国朋友聊天。', 'Wǒ xiǎng gēn Zhōngguó péngyou liáotiān.', '중국 친구랑 이야기하고 싶어요.', '你学中文想做什么？', '我想跟 ___ 聊天', '跟|中国朋友|聊天', '同事 · 老师 · 客户']
+  ]},
+  { n: 3, t: '주말 계획 말하기', g: '我打算…', s: [
+    ['我打算周末去爬山。', 'Wǒ dǎsuàn zhōumò qù pá shān.', '주말에 등산 갈 계획이에요.', '你周末打算做什么？', '我打算周末去 ___', '打算|周末|去爬山', '游泳 · 逛街 · 看展览'],
+    ['这个周六我打算在家休息。', 'Zhège zhōuliù wǒ dǎsuàn zài jiā xiūxi.', '이번 토요일엔 집에서 쉴 생각이에요.', '这个周六你打算干什么？', '这个 ___ 我打算在家 ___', '打算|在家|休息', '周日 · 打扫房间 · 做饭'],
+    ['我打算跟家人一起吃饭。', 'Wǒ dǎsuàn gēn jiārén yìqǐ chī fàn.', '가족이랑 같이 밥 먹을 계획이에요.', '周末你打算跟谁一起过？', '我打算跟 ___ 一起 ___', '跟|家人|一起吃饭', '朋友 · 男朋友 · 女朋友'],
+    ['星期天我打算去看电影。', 'Xīngqītiān wǒ dǎsuàn qù kàn diànyǐng.', '일요일에 영화 보러 갈 계획이에요.', '星期天你有什么打算？', '___ 我打算去 ___', '打算|去|看电影', '看演唱会 · 看比赛 · 买衣服'],
+    ['我打算周末好好儿睡一觉。', 'Wǒ dǎsuàn zhōumò hǎohāor shuì yí jiào.', '주말에 푹 한번 자 볼 생각이에요.', '你周末想怎么休息？', '我打算周末好好儿 ___', '好好儿|睡一觉', '休息 · 玩儿 · 准备考试']
+  ]},
+  { n: 4, t: '취향과 생각 표현하기', g: '我喜欢… · 我觉得…', s: [
+    ['我喜欢一个人看书。', 'Wǒ xǐhuan yí ge rén kàn shū.', '혼자 책 읽는 걸 좋아해요.', '你喜欢做什么？', '我喜欢一个人 ___', '喜欢|一个人|看书', '散步 · 听音乐 · 喝咖啡'],
+    ['我不太喜欢吃辣的。', 'Wǒ bú tài xǐhuan chī là de.', '매운 건 별로 안 좋아해요.', '你喜欢吃辣的吗？', '我不太喜欢 ___', '不太喜欢|吃辣的', '吃甜的 · 喝酒 · 运动'],
+    ['我觉得中文很有意思。', 'Wǒ juéde Zhōngwén hěn yǒu yìsi.', '중국어가 재미있다고 생각해요.', '你觉得中文怎么样？', '我觉得 ___ 很 ___', '我觉得|很有意思', '汉字 · 发音 · 难'],
+    ['我觉得这家咖啡店很安静。', 'Wǒ juéde zhè jiā kāfēidiàn hěn ānjìng.', '이 카페는 조용한 것 같아요.', '你觉得这家咖啡店怎么样？', '我觉得这家 ___ 很 ___', '这家|咖啡店|很安静', '饭馆儿 · 好吃 · 便宜'],
+    ['我最喜欢的季节是秋天。', 'Wǒ zuì xǐhuan de jìjié shì qiūtiān.', '제가 제일 좋아하는 계절은 가을이에요.', '你最喜欢哪个季节？', '我最喜欢的 ___ 是 ___', '最喜欢的|季节|是', '颜色 · 水果 · 电影']
+  ]},
+  { n: 5, cp: 1, t: '툭! 체크포인트 01', g: '1~4강 누적 복습 + 새 응용 5문장', s: [
+    ['我想去中国旅游，我觉得一定很好玩儿。', 'Wǒ xiǎng qù Zhōngguó lǚyóu, wǒ juéde yídìng hěn hǎowánr.', '중국에 여행 가고 싶어요. 분명 재미있을 것 같아요.', '你想去中国吗？', '我想去 ___，我觉得一定很 ___', '我想去|我觉得|一定很好玩儿', '日本 · 有意思 · 舒服'],
+    ['我住在首尔，我喜欢在家附近散步。', 'Wǒ zhù zài Shǒu\'ěr, wǒ xǐhuan zài jiā fùjìn sànbù.', '서울에 사는데, 집 근처에서 산책하는 걸 좋아해요.', '你平时在哪儿散步？', '我住在 ___，我喜欢在 ___ ___', '住在|喜欢|在家附近散步', '公司附近 · 公园 · 跑步'],
+    ['周六我打算去公园跑步，我觉得跑步很舒服。', 'Zhōuliù wǒ dǎsuàn qù gōngyuán pǎobù, wǒ juéde pǎobù hěn shūfu.', '토요일에 공원에서 달리기할 계획인데, 달리기는 상쾌해요.', '周六你打算做什么？', '___ 我打算去 ___，我觉得 ___ 很 ___', '打算|去公园跑步|我觉得|很舒服', '游泳 · 骑自行车 · 健康'],
+    ['我在公司上班，我想下班以后学中文。', 'Wǒ zài gōngsī shàngbān, wǒ xiǎng xiàbān yǐhòu xué Zhōngwén.', '회사에 다니는데, 퇴근 후에 중국어를 배우고 싶어요.', '你下班以后想做什么？', '我在 ___ 上班，我想下班以后 ___', '在公司上班|我想|下班以后', '去健身房 · 看书 · 学做菜'],
+    ['我不太喜欢热闹的地方，我喜欢安静的咖啡店。', 'Wǒ bú tài xǐhuan rènao de dìfang, wǒ xǐhuan ānjìng de kāfēidiàn.', '시끌벅적한 곳은 별로고, 조용한 카페를 좋아해요.', '你喜欢什么样的地方？', '我不太喜欢 ___，我喜欢 ___', '不太喜欢|热闹的地方|安静的咖啡店', '人多的地方 · 小饭馆儿 · 书店']
+  ]},
+  { n: 6, t: '요즘 근황 말하기', g: '我最近在…', s: [
+    ['我最近在学中文。', 'Wǒ zuìjìn zài xué Zhōngwén.', '요즘 중국어를 배우고 있어요.', '你最近在忙什么？', '我最近在 ___', '最近|在|学中文', '学游泳 · 找工作 · 搬家'],
+    ['我最近在准备考试。', 'Wǒ zuìjìn zài zhǔnbèi kǎoshì.', '요즘 시험 준비하고 있어요.', '你最近忙吗？', '我最近在准备 ___', '在|准备|考试', '面试 · 旅行 · 婚礼'],
+    ['我最近每天早上跑步。', 'Wǒ zuìjìn měitiān zǎoshang pǎobù.', '요즘 매일 아침 달리기를 해요.', '你最近早上做什么？', '我最近每天 ___ ___', '最近|每天早上|跑步', '晚上 · 做瑜伽 · 学中文'],
+    ['我最近工作有点儿忙。', 'Wǒ zuìjìn gōngzuò yǒudiǎnr máng.', '요즘 일이 좀 바빠요.', '你最近工作忙吗？', '我最近 ___ 有点儿 ___', '工作|有点儿|忙', '学习 · 累 · 多'],
+    ['我最近在看一部中国电视剧。', 'Wǒ zuìjìn zài kàn yí bù Zhōngguó diànshìjù.', '요즘 중국 드라마 한 편을 보고 있어요.', '你最近在看什么？', '我最近在看一部 ___', '在看|一部|电视剧', '电影 · 动画片 · 纪录片']
+  ]},
+  { n: 7, t: '이미 한 일과 경험 설명하기', g: '已经…了 · …过', s: [
+    ['我已经吃饭了。', 'Wǒ yǐjīng chī fàn le.', '저는 이미 밥 먹었어요.', '你吃饭了吗？', '我已经 ___ 了', '已经|吃饭|了', '下班 · 到家 · 睡觉'],
+    ['我已经做完作业了。', 'Wǒ yǐjīng zuòwán zuòyè le.', '숙제는 벌써 다 했어요.', '你的作业做完了吗？', '我已经 ___完 ___ 了', '已经|做完|了', '看完 · 写完 · 报告'],
+    ['我去过上海两次。', 'Wǒ qùguo Shànghǎi liǎng cì.', '상하이에 두 번 가 봤어요.', '你去过上海吗？', '我去过 ___ ___ 次', '去过|上海|两次', '北京 · 香港 · 一次'],
+    ['我吃过北京烤鸭，很好吃。', 'Wǒ chīguo Běijīng kǎoyā, hěn hǎochī.', '베이징 오리구이를 먹어 봤는데, 맛있었어요.', '你吃过北京烤鸭吗？', '我 ___过 ___，很 ___', '吃过|北京烤鸭|很好吃', '火锅 · 小笼包 · 辣'],
+    ['我已经买好票了。', 'Wǒ yǐjīng mǎihǎo piào le.', '표는 이미 사 뒀어요.', '票买了吗？', '我已经 ___好 ___ 了', '已经|买好|票', '订好 · 准备好 · 酒店']
+  ]},
+  { n: 8, t: '아직 하지 못한 일 말하기', g: '还没…', s: [
+    ['我还没吃早饭。', 'Wǒ hái méi chī zǎofàn.', '아직 아침을 안 먹었어요.', '你吃早饭了吗？', '我还没 ___', '还没|吃早饭', '吃午饭 · 起床 · 洗澡'],
+    ['我还没去过中国。', 'Wǒ hái méi qùguo Zhōngguó.', '아직 중국에 가 본 적이 없어요.', '你去过中国吗？', '我还没 ___过 ___', '还没|去过|中国', '欧洲 · 吃过 · 臭豆腐'],
+    ['我还没想好。', 'Wǒ hái méi xiǎnghǎo.', '아직 생각을 못 정했어요.', '你想好了吗？', '我还没 ___好', '还没|想好', '决定 · 准备 · 收拾'],
+    ['我还没做完今天的工作。', 'Wǒ hái méi zuòwán jīntiān de gōngzuò.', '오늘 일을 아직 다 못 끝냈어요.', '你下班了吗？', '我还没 ___完 ___', '还没|做完|今天的工作', '看完 · 这本书 · 作业'],
+    ['那部电影我还没看。', 'Nà bù diànyǐng wǒ hái méi kàn.', '그 영화는 아직 안 봤어요.', '你看那部电影了吗？', '那 ___ 我还没 ___', '那部电影|还没|看', '那本书 · 那首歌 · 听']
+  ]},
+  { n: 9, t: '이유와 조건 설명하기', g: '因为…所以… · 如果…就…', s: [
+    ['因为今天下雨，所以我不想出去。', 'Yīnwèi jīntiān xià yǔ, suǒyǐ wǒ bù xiǎng chūqu.', '오늘 비가 와서 나가기 싫어요.', '你今天怎么不出去？', '因为 ___，所以我 ___', '因为|下雨|所以|不想出去', '太冷了 · 太累了 · 在家看书'],
+    ['因为我喜欢中国电影，所以我学中文。', 'Yīnwèi wǒ xǐhuan Zhōngguó diànyǐng, suǒyǐ wǒ xué Zhōngwén.', '중국 영화를 좋아해서 중국어를 배워요.', '你为什么学中文？', '因为我喜欢 ___，所以我学中文', '因为|喜欢|所以|学中文', '中国歌 · 中国菜 · 工作需要'],
+    ['如果明天天气好，我就去爬山。', 'Rúguǒ míngtiān tiānqì hǎo, wǒ jiù qù pá shān.', '내일 날씨가 좋으면 등산 갈 거예요.', '明天你做什么？', '如果 ___，我就 ___', '如果|天气好|就|去爬山', '下雨 · 有时间 · 去海边'],
+    ['如果你有时间，我们就一起吃饭吧。', 'Rúguǒ nǐ yǒu shíjiān, wǒmen jiù yìqǐ chī fàn ba.', '시간 있으면 우리 같이 밥 먹어요.', '这周末你有时间吗？', '如果你 ___，我们就一起 ___ 吧', '如果|有时间|就|一起吃饭吧', '不忙 · 喝咖啡 · 看电影'],
+    ['因为太累了，所以我早点儿睡了。', 'Yīnwèi tài lèi le, suǒyǐ wǒ zǎo diǎnr shuì le.', '너무 피곤해서 일찍 잤어요.', '你昨天怎么睡得那么早？', '因为太 ___ 了，所以我 ___', '因为|太累了|所以|早点儿睡了', '忙 · 没去 · 没吃饭']
+  ]},
+  { n: 10, cp: 2, t: '툭! 체크포인트 02', g: '1~9강 전체 누적 복습 + 새 응용 5문장', s: [
+    ['我最近在练习口语，因为下个星期有中文面试。', 'Wǒ zuìjìn zài liànxí kǒuyǔ, yīnwèi xià ge xīngqī yǒu Zhōngwén miànshì.', '다음 주에 중국어 면접이 있어서 요즘 회화 연습을 하고 있어요.', '你最近在练习什么？', '我最近在 ___，因为 ___', '最近在|练习口语|因为', '学开车 · 准备考试 · 要去旅行'],
+    ['我已经去过北京了，还没去过西安。', 'Wǒ yǐjīng qùguo Běijīng le, hái méi qùguo Xī\'ān.', '베이징은 이미 가 봤고, 시안은 아직 못 가 봤어요.', '你去过中国哪些地方？', '我已经 ___过 ___ 了，还没 ___过 ___', '已经去过|了|还没去过', '吃过 · 火锅 · 烤鸭'],
+    ['如果这个周末不加班，我就去看朋友。', 'Rúguǒ zhège zhōumò bù jiābān, wǒ jiù qù kàn péngyou.', '이번 주말에 야근 안 하면, 친구 보러 갈 거예요.', '这个周末你有什么计划？', '如果 ___，我就去 ___', '如果|不加班|就|去看朋友', '天气好 · 看父母 · 去旅行'],
+    ['我还没吃午饭，因为今天太忙了。', 'Wǒ hái méi chī wǔfàn, yīnwèi jīntiān tài máng le.', '오늘 너무 바빠서 아직 점심을 못 먹었어요.', '你吃午饭了吗？', '我还没 ___，因为 ___', '还没|吃午饭|因为|太忙了', '回家 · 下班 · 开会'],
+    ['我学了一年中文，已经能说一些简单的句子了。', 'Wǒ xuéle yì nián Zhōngwén, yǐjīng néng shuō yìxiē jiǎndān de jùzi le.', '중국어를 1년 배워서, 이제 간단한 문장은 말할 수 있어요.', '你的中文怎么样？', '我学了 ___，已经能 ___ 了', '学了一年|已经能说|简单的句子', '半年 · 看懂菜单 · 点菜']
+  ]},
+  { n: 11, t: '시간과 일정 묻고 답하기', g: '什么时候…? · 几点…?', s: [
+    ['我明天下午三点有空。', 'Wǒ míngtiān xiàwǔ sān diǎn yǒu kòng.', '내일 오후 3시에 시간 있어요.', '你什么时候有空？', '我 ___ 有空', '明天下午|三点|有空', '今天晚上 · 星期五 · 周末'],
+    ['你什么时候方便？', 'Nǐ shénme shíhou fāngbiàn?', '언제가 편하세요?', '', '你什么时候 ___？', '什么时候|方便', '有空 · 下班 · 回国'],
+    ['我一般晚上七点下班。', 'Wǒ yìbān wǎnshang qī diǎn xiàbān.', '저는 보통 저녁 7시에 퇴근해요.', '你一般几点下班？', '我一般 ___ 点 ___', '一般|晚上七点|下班', '早上八点 · 起床 · 上班'],
+    ['我下个月去中国出差。', 'Wǒ xià ge yuè qù Zhōngguó chūchāi.', '다음 달에 중국으로 출장 가요.', '你什么时候去中国？', '我 ___ 去 ___ 出差', '下个月|去中国|出差', '下个星期 · 广州 · 旅行'],
+    ['我周末一般睡到十点。', 'Wǒ zhōumò yìbān shuì dào shí diǎn.', '주말엔 보통 10시까지 자요.', '你周末几点起床？', '我周末一般 ___到 ___', '周末|一般|睡到十点', '九点 · 中午 · 玩儿到很晚']
+  ]},
+  { n: 12, t: '누구와 함께할지 말하기', g: '跟谁一起…?', s: [
+    ['我跟同事一起吃午饭。', 'Wǒ gēn tóngshì yìqǐ chī wǔfàn.', '동료랑 같이 점심 먹어요.', '你跟谁一起吃午饭？', '我跟 ___ 一起 ___', '跟|同事|一起吃午饭', '朋友 · 家人 · 喝咖啡'],
+    ['我想跟你一起去。', 'Wǒ xiǎng gēn nǐ yìqǐ qù.', '너랑 같이 가고 싶어.', '你想跟谁一起去？', '我想跟 ___ 一起 ___', '想跟你|一起去', '他们 · 看 · 学'],
+    ['这次我一个人去旅行。', 'Zhè cì wǒ yí ge rén qù lǚxíng.', '이번엔 혼자 여행 가요.', '你跟谁一起去旅行？', '这次我 ___ 去 ___', '这次|一个人|去旅行', '跟家人 · 出差 · 看展览'],
+    ['你要不要跟我们一起去？', 'Nǐ yào bu yào gēn wǒmen yìqǐ qù?', '우리랑 같이 갈래요?', '', '你要不要跟 ___ 一起 ___？', '要不要|跟我们|一起去', '我 · 吃饭 · 打球'],
+    ['周末我常常跟朋友一起打篮球。', 'Zhōumò wǒ chángcháng gēn péngyou yìqǐ dǎ lánqiú.', '주말에 자주 친구랑 같이 농구해요.', '你周末常常跟谁一起玩儿？', '___ 我常常跟 ___ 一起 ___', '常常|跟朋友|一起打篮球', '晚上 · 踢足球 · 打游戏']
+  ]},
+  { n: 13, t: '두 가지를 비교하고 선택하기', g: 'A比B更…', s: [
+    ['今天比昨天冷。', 'Jīntiān bǐ zuótiān lěng.', '오늘이 어제보다 추워요.', '今天冷吗？', '___ 比 ___ ___', '今天|比昨天|冷', '热 · 这里 · 那里'],
+    ['坐地铁比坐出租车更快。', 'Zuò dìtiě bǐ zuò chūzūchē gèng kuài.', '지하철 타는 게 택시보다 더 빨라요.', '坐地铁快还是坐出租车快？', '坐 ___ 比坐 ___ 更 ___', '坐地铁|比|更快', '公交车 · 方便 · 便宜'],
+    ['我觉得这件比那件更好看。', 'Wǒ juéde zhè jiàn bǐ nà jiàn gèng hǎokàn.', '이게 저것보다 더 예쁜 것 같아요.', '这两件，你觉得哪件好看？', '我觉得这 ___ 比那 ___ 更 ___', '我觉得|这件比那件|更好看', '这个 · 便宜 · 舒服'],
+    ['比起咖啡，我更喜欢喝茶。', 'Bǐqǐ kāfēi, wǒ gèng xǐhuan hē chá.', '커피보다 차를 더 좋아해요.', '你喜欢喝咖啡还是喝茶？', '比起 ___，我更喜欢 ___', '比起|更喜欢|喝茶', '夏天 · 冬天 · 看电影'],
+    ['我选这个，因为它比那个便宜。', 'Wǒ xuǎn zhège, yīnwèi tā bǐ nàge piányi.', '이걸로 할게요. 저것보다 싸서요.', '你选哪个？', '我选 ___，因为它比 ___ ___', '我选这个|因为|比那个便宜', '那个 · 轻 · 好用']
+  ]},
+  { n: 14, t: '부탁하고 허락 구하기', g: '可以…吗？', s: [
+    ['我可以坐这儿吗？', 'Wǒ kěyǐ zuò zhèr ma?', '여기 앉아도 돼요?', '', '我可以 ___ 吗？', '可以|坐这儿|吗', '进来 · 试试 · 拍照'],
+    ['可以帮我拍张照片吗？', 'Kěyǐ bāng wǒ pāi zhāng zhàopiàn ma?', '사진 한 장 찍어 주실 수 있어요?', '', '可以帮我 ___ 吗？', '可以|帮我|拍张照片', '拿一下 · 看一下 · 叫车'],
+    ['可以说慢一点儿吗？', 'Kěyǐ shuō màn yìdiǎnr ma?', '좀 천천히 말해 주실 수 있어요?', '', '可以 ___ 一点儿吗？', '可以|说慢|一点儿', '说大声 · 便宜 · 快'],
+    ['我可以用一下你的笔吗？', 'Wǒ kěyǐ yòng yíxià nǐ de bǐ ma?', '펜 좀 써도 돼요?', '', '我可以 ___一下你的 ___ 吗？', '可以|用一下|你的笔', '看 · 手机 · 充电器'],
+    ['当然可以，你用吧。', 'Dāngrán kěyǐ, nǐ yòng ba.', '당연하죠, 쓰세요.', '我可以用一下你的手机吗？', '当然可以，你 ___ 吧', '当然可以|你用吧', '坐 · 拿 · 看']
+  ]},
+  { n: 15, cp: 3, t: '툭! 체크포인트 03', g: '1~14강 전체 누적 복습 + 새 응용 5문장', s: [
+    ['你什么时候有空？我们一起去看电影吧。', 'Nǐ shénme shíhou yǒu kòng? Wǒmen yìqǐ qù kàn diànyǐng ba.', '언제 시간 돼? 우리 같이 영화 보러 가자.', '', '你什么时候有空？我们一起 ___ 吧', '什么时候有空|我们一起|吧', '吃饭 · 去爬山 · 喝一杯'],
+    ['我跟朋友一起去过济州岛，那儿比首尔暖和。', 'Wǒ gēn péngyou yìqǐ qùguo Jìzhōu Dǎo, nàr bǐ Shǒu\'ěr nuǎnhuo.', '친구랑 같이 제주도에 가 봤는데, 거기가 서울보다 따뜻했어요.', '你去过济州岛吗？', '我跟 ___ 一起去过 ___，那儿比 ___ ___', '跟朋友一起|去过|比首尔暖和', '釜山 · 家人 · 凉快'],
+    ['如果你明天方便，可以早点儿来吗？', 'Rúguǒ nǐ míngtiān fāngbiàn, kěyǐ zǎo diǎnr lái ma?', '내일 괜찮으면, 좀 일찍 와 줄 수 있어요?', '', '如果你 ___ 方便，可以 ___ 吗？', '如果|方便|可以早点儿来吗', '今天下午 · 帮我一下 · 晚点儿走'],
+    ['我觉得坐高铁比坐飞机更方便。', 'Wǒ juéde zuò gāotiě bǐ zuò fēijī gèng fāngbiàn.', '고속철도가 비행기보다 더 편한 것 같아요.', '去上海坐高铁还是坐飞机？', '我觉得 ___ 比 ___ 更 ___', '我觉得|坐高铁|比|更方便', '开车 · 坐船 · 舒服'],
+    ['这个周末我想一个人在家看书，不想出去。', 'Zhège zhōumò wǒ xiǎng yí ge rén zài jiā kàn shū, bù xiǎng chūqu.', '이번 주말엔 혼자 집에서 책 읽고 싶어요. 나가고 싶지 않아요.', '这个周末你出去玩儿吗？', '这个周末我想 ___，不想 ___', '想一个人|在家看书|不想出去', '休息 · 做饭 · 见人']
+  ]},
+  { n: 16, t: '카페·식당에서 주문하기', g: '주문 · 요청', s: [
+    ['我要一杯冰美式。', 'Wǒ yào yì bēi bīng měishì.', '아이스 아메리카노 한 잔 주세요.', '您要喝点儿什么？', '我要一杯 ___', '我要|一杯|冰美式', '热拿铁 · 珍珠奶茶 · 柠檬水'],
+    ['不要放香菜，谢谢。', 'Bú yào fàng xiāngcài, xièxie.', '고수는 넣지 마세요. 감사합니다.', '还有别的要求吗？', '不要放 ___，谢谢', '不要放|香菜', '辣椒 · 葱 · 冰'],
+    ['这个菜辣不辣？', 'Zhège cài là bu là?', '이 요리 매워요?', '', '这个 ___ ___不___？', '这个菜|辣不辣', '咸 · 甜 · 贵'],
+    ['服务员，买单！', 'Fúwùyuán, mǎidān!', '저기요, 계산할게요!', '', '服务员，___！', '服务员|买单', '点菜 · 加水 · 拿个碗'],
+    ['剩下的可以打包吗？', 'Shèngxià de kěyǐ dǎbāo ma?', '남은 거 포장할 수 있어요?', '', '___ 可以打包吗？', '剩下的|可以|打包吗', '这个菜 · 这些 · 饺子']
+  ]},
+  { n: 17, t: '친구와 약속 잡기', g: '제안 · 시간 조율', s: [
+    ['我们明天一起吃晚饭，怎么样？', 'Wǒmen míngtiān yìqǐ chī wǎnfàn, zěnmeyàng?', '우리 내일 같이 저녁 먹는 거 어때?', '', '我们 ___ 一起 ___，怎么样？', '一起|吃晚饭|怎么样', '周末 · 去看展览 · 喝咖啡'],
+    ['晚上七点在地铁站见吧。', 'Wǎnshang qī diǎn zài dìtiězhàn jiàn ba.', '저녁 7시에 지하철역에서 만나자.', '我们几点在哪儿见？', '___ 在 ___ 见吧', '七点|在地铁站|见吧', '咖啡店门口 · 公司楼下 · 六点半'],
+    ['不好意思，我明天有事。', 'Bù hǎoyìsi, wǒ míngtiān yǒu shì.', '미안해, 나 내일 일이 있어.', '明天一起去吃饭吧？', '不好意思，我 ___ 有事', '不好意思|明天|有事', '今天晚上 · 周末 · 下午'],
+    ['那我们改到星期六吧。', 'Nà wǒmen gǎi dào xīngqīliù ba.', '그럼 토요일로 바꾸자.', '明天我不行，怎么办？', '那我们改到 ___ 吧', '那|改到|星期六吧', '下个星期 · 晚上八点 · 后天'],
+    ['我可能会晚到十分钟。', 'Wǒ kěnéng huì wǎn dào shí fēnzhōng.', '10분쯤 늦을 것 같아.', '你到了吗？', '我可能会晚到 ___', '可能会|晚到|十分钟', '五分钟 · 半个小时 · 一会儿']
+  ]},
+  { n: 18, t: '취미와 일상 대화 이어가기', g: '질문 이어가기', s: [
+    ['你平时喜欢做什么？', 'Nǐ píngshí xǐhuan zuò shénme?', '평소에 뭐 하는 거 좋아해요?', '', '你平时喜欢 ___？', '平时|喜欢|做什么', '吃什么 · 去哪儿 · 看什么'],
+    ['我一有空就去健身房。', 'Wǒ yì yǒu kòng jiù qù jiànshēnfáng.', '시간만 나면 헬스장에 가요.', '你有空的时候做什么？', '我一 ___ 就 ___', '一有空|就|去健身房', '下班 · 回家 · 看书'],
+    ['你也喜欢旅行吗？', 'Nǐ yě xǐhuan lǚxíng ma?', '당신도 여행 좋아해요?', '', '你也喜欢 ___ 吗？', '你也|喜欢旅行|吗', '爬山 · 做饭 · 打游戏'],
+    ['我是从去年开始学吉他的。', 'Wǒ shì cóng qùnián kāishǐ xué jítā de.', '작년부터 기타를 배우기 시작했어요.', '你是什么时候开始学吉他的？', '我是从 ___ 开始 ___ 的', '是从|去年|开始|的', '上个月 · 学游泳 · 跑步'],
+    ['那你呢？你周末一般做什么？', 'Nà nǐ ne? Nǐ zhōumò yìbān zuò shénme?', '그럼 당신은요? 주말에 보통 뭐 해요?', '', '那你呢？你 ___ 一般 ___？', '那你呢|周末|一般做什么', '下班以后 · 晚上 · 吃什么']
+  ]},
+  { n: 19, t: '의견을 설명하고 추천하기', g: '비교 · 근거', s: [
+    ['我推荐你去这家饭馆儿。', 'Wǒ tuījiàn nǐ qù zhè jiā fànguǎnr.', '이 식당에 가 보는 걸 추천해요.', '你有什么推荐的饭馆儿吗？', '我推荐你 ___', '我推荐你|去|这家饭馆儿', '看这部电影 · 买这个 · 去那儿'],
+    ['我觉得这个方法更好，因为又快又简单。', 'Wǒ juéde zhège fāngfǎ gèng hǎo, yīnwèi yòu kuài yòu jiǎndān.', '이 방법이 더 나은 것 같아요. 빠르고 간단하거든요.', '你觉得哪个方法好？', '我觉得 ___ 更好，因为又 ___ 又 ___', '我觉得|更好|因为|又快又简单', '这个手机 · 便宜 · 好用'],
+    ['你一定要试试这个。', 'Nǐ yídìng yào shìshi zhège.', '이거 꼭 한번 해 봐요.', '', '你一定要 ___ ___', '一定要|试试|这个', '尝尝 · 看看 · 去看看'],
+    ['我不太同意，我觉得有点儿贵。', 'Wǒ bú tài tóngyì, wǒ juéde yǒudiǎnr guì.', '저는 좀 생각이 달라요. 좀 비싼 것 같아요.', '我觉得这个手机很不错！', '我不太同意，我觉得有点儿 ___', '不太同意|我觉得|有点儿贵', '大 · 复杂 · 远'],
+    ['如果你喜欢安静，我建议你住这儿。', 'Rúguǒ nǐ xǐhuan ānjìng, wǒ jiànyì nǐ zhù zhèr.', '조용한 걸 좋아하면, 여기서 묵는 걸 추천해요.', '你觉得我住哪儿比较好？', '如果你喜欢 ___，我建议你 ___', '如果|喜欢安静|我建议你|住这儿', '热闹 · 吃辣的 · 去成都']
+  ]},
+  { n: 20, cp: 4, t: '툭! FINAL', g: '1~19강 전체 누적 복습 + 새 응용 5문장 + After 말하기', s: [
+    ['我最近一有空就练习说中文，我觉得进步了不少。', 'Wǒ zuìjìn yì yǒu kòng jiù liànxí shuō Zhōngwén, wǒ juéde jìnbù le bù shǎo.', '요즘 시간 날 때마다 중국어 말하기를 연습하는데, 꽤 는 것 같아요.', '你最近中文怎么样？', '我最近一有空就 ___，我觉得 ___', '一有空就|练习说中文|进步了不少', '跑步 · 看中文书 · 瘦了一点儿'],
+    ['这家店的咖啡比那家好喝，我推荐你试试。', 'Zhè jiā diàn de kāfēi bǐ nà jiā hǎohē, wǒ tuījiàn nǐ shìshi.', '이 가게 커피가 저 가게보다 맛있어요. 한번 마셔 보세요.', '你知道哪家咖啡好喝吗？', '这家店的 ___ 比那家 ___，我推荐你试试', '比那家好喝|我推荐你|试试', '面包 · 蛋糕 · 好吃'],
+    ['如果你周末有空，我们一起去爬山，怎么样？', 'Rúguǒ nǐ zhōumò yǒu kòng, wǒmen yìqǐ qù pá shān, zěnmeyàng?', '주말에 시간 있으면 우리 같이 등산 가는 거 어때?', '', '如果你 ___ 有空，我们一起 ___，怎么样？', '如果|有空|我们一起|怎么样', '明天晚上 · 吃火锅 · 去看展览'],
+    ['我还没去过成都，听说那儿的菜又辣又好吃。', 'Wǒ hái méi qùguo Chéngdū, tīngshuō nàr de cài yòu là yòu hǎochī.', '청두는 아직 못 가 봤는데, 거기 음식이 맵고 맛있대요.', '你去过成都吗？', '我还没去过 ___，听说那儿的 ___ 又 ___ 又 ___', '还没去过|听说|又辣又好吃', '西安 · 风景 · 漂亮'],
+    ['我学中文，是因为想用中文跟中国朋友聊天。', 'Wǒ xué Zhōngwén, shì yīnwèi xiǎng yòng Zhōngwén gēn Zhōngguó péngyou liáotiān.', '제가 중국어를 배우는 건 중국 친구와 중국어로 이야기하고 싶어서예요.', '你为什么学中文？', '我学中文，是因为想 ___', '是因为|想用中文|跟中国朋友聊天', '去中国工作 · 看中国电视剧 · 旅行']
+  ]}
+];
+
+/* 실력 확인 툭! (Before & After) — 같은 미션으로 1강 전과 20강 후에 비교 */
+const BA_MISSION = {
+  title: '1분 동안 나에 대해 말하기',
+  cues: ['이름과 사는 곳', '요즘 하는 일', '이번 주말 계획', '좋아하는 것과 그 이유', '해 보고 싶은 일']
+};
+
+/* 덩어리훈련 단계: 짧은 덩어리 → 조금 더 → (마지막은 완성 문장, 자동)
+   '카드/카드=한국어 뜻' · 단계는 | 로 구분 · 없으면 완성 문장 한 단계만 */
+const STAGES = {
+  '我是韩国人。': '是/韩国人=한국 사람이에요',
+  '我叫金民秀，你可以叫我民秀。': '我叫/金民秀=제 이름은 김민수예요|你可以/叫我/民秀=민수라고 불러도 돼요',
+  '我在公司上班。': '在/公司/上班=회사에 다녀요',
+  '我住在首尔。': '住在/首尔=서울에 살아요',
+  '我学了一年中文。': '学/中文=중국어를 배워요',
+  '我想去中国旅游。': '去/旅游=여행 가요|去/中国/旅游=중국에 여행 가요',
+  '我想学做中国菜。': '做/中国菜=중국 요리를 만들어요|学做/中国菜=중국 요리 만드는 걸 배워요',
+  '我今天想早点儿回家。': '早点儿/回家=좀 일찍 집에 가요|想/早点儿/回家=좀 일찍 집에 가고 싶어요',
+  '我想喝一杯咖啡。': '喝/咖啡=커피를 마셔요|喝/一杯/咖啡=커피 한 잔 마셔요',
+  '我想跟中国朋友聊天。': '跟/朋友/聊天=친구랑 이야기해요|跟/中国朋友/聊天=중국 친구랑 이야기해요',
+  '我打算周末去爬山。': '去/爬山=등산 가요|周末/去/爬山=주말에 등산 가요',
+  '这个周六我打算在家休息。': '在家/休息=집에서 쉬어요|我/打算/在家/休息=집에서 쉴 생각이에요',
+  '我打算跟家人一起吃饭。': '一起/吃饭=같이 밥 먹어요|跟/家人/一起/吃饭=가족이랑 같이 밥 먹어요',
+  '星期天我打算去看电影。': '去/看电影=영화 보러 가요|我/打算/去/看电影=영화 보러 갈 계획이에요',
+  '我打算周末好好儿睡一觉。': '睡/一觉=한숨 자요|好好儿/睡/一觉=푹 한번 자요',
+  '我喜欢一个人看书。': '喜欢/看书=책 읽는 걸 좋아해요|喜欢/一个人/看书=혼자 책 읽는 걸 좋아해요',
+  '我不太喜欢吃辣的。': '吃/辣的=매운 걸 먹어요|喜欢/吃/辣的=매운 걸 좋아해요',
+  '我觉得中文很有意思。': '中文/很有意思=중국어는 재미있어요',
+  '我觉得这家咖啡店很安静。': '咖啡店/很安静=카페가 조용해요|这家/咖啡店/很安静=이 카페는 조용해요',
+  '我最喜欢的季节是秋天。': '我/喜欢/秋天=저는 가을을 좋아해요|季节/是/秋天=계절은 가을이에요',
+  '我想去中国旅游，我觉得一定很好玩儿。': '我想去/中国旅游=중국에 여행 가고 싶어요|一定/很好玩儿=분명 재미있을 거예요',
+  '我住在首尔，我喜欢在家附近散步。': '在家附近/散步=집 근처에서 산책해요|我/喜欢/在家附近散步=집 근처에서 산책하는 걸 좋아해요',
+  '周六我打算去公园跑步，我觉得跑步很舒服。': '去公园/跑步=공원에 달리기하러 가요|周六我/打算/去公园跑步=토요일에 공원에서 달리기할 계획이에요|我觉得/跑步/很舒服=달리기는 상쾌한 것 같아요',
+  '我在公司上班，我想下班以后学中文。': '下班以后/学中文=퇴근 후에 중국어를 배워요|我想/下班以后/学中文=퇴근 후에 중국어를 배우고 싶어요',
+  '我不太喜欢热闹的地方，我喜欢安静的咖啡店。': '我喜欢/安静的咖啡店=조용한 카페를 좋아해요|我/不太喜欢/热闹的地方=시끌벅적한 곳은 별로예요',
+  '我最近在学中文。': '在/学中文=중국어를 배우고 있어요',
+  '我最近在准备考试。': '准备/考试=시험을 준비해요|在/准备/考试=시험을 준비하고 있어요',
+  '我最近每天早上跑步。': '每天早上/跑步=매일 아침 달리기해요',
+  '我最近工作有点儿忙。': '工作/有点儿/忙=일이 좀 바빠요',
+  '我最近在看一部中国电视剧。': '看/电视剧=드라마를 봐요|在看/一部/中国/电视剧=중국 드라마 한 편을 보고 있어요',
+  '我已经吃饭了。': '吃饭/了=밥 먹었어요',
+  '我已经做完作业了。': '做/作业=숙제를 해요|做完/作业/了=숙제를 다 했어요',
+  '我去过上海两次。': '去过/上海=상하이에 가 봤어요',
+  '我吃过北京烤鸭，很好吃。': '吃过/北京烤鸭=베이징 오리구이를 먹어 봤어요',
+  '我已经买好票了。': '买/票=표를 사요|买好/票/了=표를 사 뒀어요',
+  '我还没吃早饭。': '吃/早饭=아침을 먹어요',
+  '我还没去过中国。': '去过/中国=중국에 가 봤어요',
+  '我还没做完今天的工作。': '做完/工作=일을 다 끝내요|做完/今天的工作=오늘 일을 다 끝내요',
+  '那部电影我还没看。': '我/还没/看=아직 안 봤어요',
+  '因为今天下雨，所以我不想出去。': '今天/下雨=오늘 비가 와요|我/不想出去=나가기 싫어요',
+  '因为我喜欢中国电影，所以我学中文。': '我/喜欢/中国电影=중국 영화를 좋아해요|所以/我/学中文=그래서 중국어를 배워요',
+  '如果明天天气好，我就去爬山。': '明天/天气好=내일 날씨가 좋아요|我/就/去爬山=(그러면) 등산 갈 거예요',
+  '如果你有时间，我们就一起吃饭吧。': '如果/你/有时间=시간 있으면|我们/一起吃饭吧=우리 같이 밥 먹어요',
+  '因为太累了，所以我早点儿睡了。': '我/早点儿睡了=일찍 잤어요',
+  '我最近在练习口语，因为下个星期有中文面试。': '我/最近在/练习口语=요즘 회화 연습을 하고 있어요|下个星期/有/中文面试=다음 주에 중국어 면접이 있어요',
+  '我已经去过北京了，还没去过西安。': '我/已经去过/北京/了=베이징은 이미 가 봤어요|还没去过/西安=시안은 아직 못 가 봤어요',
+  '如果这个周末不加班，我就去看朋友。': '这个周末/不加班=이번 주말에 야근 안 해요|我/就/去看朋友=(그러면) 친구 보러 갈 거예요',
+  '我还没吃午饭，因为今天太忙了。': '我/还没/吃午饭=아직 점심을 못 먹었어요|今天/太忙了=오늘 너무 바빠요',
+  '我学了一年中文，已经能说一些简单的句子了。': '我/学了一年/中文=중국어를 1년 배웠어요|能说/简单的句子=간단한 문장을 말할 수 있어요',
+  '我明天下午三点有空。': '我/有空=시간 있어요|我/明天下午/有空=내일 오후에 시간 있어요',
+  '我一般晚上七点下班。': '我/晚上七点/下班=저녁 7시에 퇴근해요',
+  '我下个月去中国出差。': '去中国/出差=중국으로 출장 가요',
+  '我周末一般睡到十点。': '我/睡到十点=10시까지 자요',
+  '我跟同事一起吃午饭。': '我/一起吃午饭=같이 점심 먹어요',
+  '我想跟你一起去。': '我/一起去=같이 가요',
+  '这次我一个人去旅行。': '我/去旅行=여행 가요|我/一个人/去旅行=혼자 여행 가요',
+  '你要不要跟我们一起去？': '你/要不要/一起去=같이 갈래요?',
+  '周末我常常跟朋友一起打篮球。': '跟朋友/一起打篮球=친구랑 같이 농구해요|常常/跟朋友/一起打篮球=자주 친구랑 같이 농구해요',
+  '坐地铁比坐出租车更快。': '坐地铁/更快=지하철이 더 빨라요',
+  '我觉得这件比那件更好看。': '这件比那件/更好看=이게 저것보다 더 예뻐요',
+  '比起咖啡，我更喜欢喝茶。': '我/喜欢/喝茶=차 마시는 걸 좋아해요|我/更喜欢/喝茶=차 마시는 걸 더 좋아해요',
+  '我选这个，因为它比那个便宜。': '它/比那个便宜=그게 저것보다 싸요',
+  '可以帮我拍张照片吗？': '帮我/拍张照片=사진 한 장 찍어 줘요',
+  '可以说慢一点儿吗？': '说慢/一点儿=좀 천천히 말해요',
+  '我可以用一下你的笔吗？': '用一下/你的笔=펜 좀 써요',
+  '当然可以，你用吧。': '当然/可以=당연하죠',
+  '你什么时候有空？我们一起去看电影吧。': '你/什么时候有空=언제 시간 돼?|我们一起/去看电影/吧=같이 영화 보러 가자',
+  '我跟朋友一起去过济州岛，那儿比首尔暖和。': '我/去过/济州岛=제주도에 가 봤어요|那儿/比首尔暖和=거기가 서울보다 따뜻해요',
+  '如果你明天方便，可以早点儿来吗？': '如果/你明天/方便=내일 괜찮으면',
+  '我觉得坐高铁比坐飞机更方便。': '坐高铁/更方便=고속철도가 더 편해요|坐高铁/比/坐飞机/更方便=고속철도가 비행기보다 더 편해요',
+  '这个周末我想一个人在家看书，不想出去。': '想一个人/在家看书=혼자 집에서 책 읽고 싶어요|这个周末我/想一个人/在家看书=이번 주말엔 혼자 집에서 책 읽고 싶어요',
+  '我要一杯冰美式。': '我要/冰美式=아이스 아메리카노 주세요',
+  '剩下的可以打包吗？': '可以/打包吗=포장 돼요?',
+  '我们明天一起吃晚饭，怎么样？': '我们明天/一起/吃晚饭=우리 내일 같이 저녁 먹어요',
+  '晚上七点在地铁站见吧。': '在地铁站/见吧=지하철역에서 만나요|七点/在地铁站/见吧=7시에 지하철역에서 만나요',
+  '不好意思，我明天有事。': '我/有事=일이 있어요|我/明天/有事=내일 일이 있어요',
+  '那我们改到星期六吧。': '我们/改到/星期六吧=토요일로 바꿔요',
+  '我可能会晚到十分钟。': '我/晚到/十分钟=10분 늦어요',
+  '你平时喜欢做什么？': '你/喜欢/做什么=뭐 하는 거 좋아해요?',
+  '我一有空就去健身房。': '我/去健身房=헬스장에 가요',
+  '你也喜欢旅行吗？': '你/喜欢旅行/吗=여행 좋아해요?',
+  '我是从去年开始学吉他的。': '我/开始/学吉他=기타를 배우기 시작했어요|我/去年/开始/学吉他=작년에 기타를 배우기 시작했어요',
+  '那你呢？你周末一般做什么？': '你/周末/一般做什么=주말에 보통 뭐 해요?',
+  '我推荐你去这家饭馆儿。': '去/这家饭馆儿=이 식당에 가요',
+  '我觉得这个方法更好，因为又快又简单。': '这个方法/更好=이 방법이 더 나아요|我觉得/这个方法/更好=이 방법이 더 나은 것 같아요',
+  '你一定要试试这个。': '你/试试/这个=이거 해 봐요',
+  '我不太同意，我觉得有点儿贵。': '我觉得/有点儿贵=좀 비싼 것 같아요',
+  '如果你喜欢安静，我建议你住这儿。': '如果/你/喜欢安静=조용한 걸 좋아하면|我建议你/住这儿=여기서 묵는 걸 추천해요',
+  '我最近一有空就练习说中文，我觉得进步了不少。': '练习/说中文=중국어 말하기를 연습해요|我最近/一有空就/练习说中文=요즘 시간 날 때마다 중국어 말하기를 연습해요|我觉得/进步了不少=많이 는 것 같아요',
+  '这家店的咖啡比那家好喝，我推荐你试试。': '这家店的咖啡/比那家好喝=이 가게 커피가 저 가게보다 맛있어요|我推荐你/试试=한번 마셔 보세요',
+  '如果你周末有空，我们一起去爬山，怎么样？': '如果/你周末/有空=주말에 시간 있으면|我们一起/去爬山=우리 같이 등산 가요',
+  '我还没去过成都，听说那儿的菜又辣又好吃。': '我/还没去过/成都=청두는 아직 못 가 봤어요|那儿的菜/又辣又好吃=거기 음식은 맵고 맛있어요',
+  '我学中文，是因为想用中文跟中国朋友聊天。': '想用中文/跟中国朋友聊天=중국어로 중국 친구와 이야기하고 싶어요'
+};
+
+</script>
+<script>
+(function () {
+'use strict';
+
+/* ═════════ 1. 그림 (덩어리숲 스타일 · 훈련하는 마음싹) ═════════ */
+/* 공통 부품: 머리띠 · 땀방울 (훈련 중인 마음싹) */
+const HEADBAND = (y, x1, x2) => `<path d="M${x1} ${y + 2}Q100 ${y - 13} ${x2} ${y + 2}L${x2} ${y + 11}Q100 ${y - 4} ${x1} ${y + 11}Z" fill="#db794c"/>
+<g><path d="M${x2 - 2} ${y + 6}q15 -4 24 4l-4 6q-9 -6 -19 -3Z" fill="#c2603a"><animateTransform attributeName="transform" type="rotate" values="0 ${x2} ${y + 6};-14 ${x2} ${y + 6};0 ${x2} ${y + 6}" dur=".5s" repeatCount="indefinite"/></path>
+<path d="M${x2 - 2} ${y + 8}q12 4 17 15l-6 3q-4 -10 -12 -12Z" fill="#db794c"><animateTransform attributeName="transform" type="rotate" values="0 ${x2} ${y + 8};12 ${x2} ${y + 8};0 ${x2} ${y + 8}" dur=".6s" repeatCount="indefinite"/></path>
+<circle cx="${x2 - 1}" cy="${y + 7}" r="5" fill="#b9562f"/></g>`;
+const DROP = (x, y, dx, dy, dur, begin, s) => `<g transform="translate(${x} ${y}) scale(${s || 1})"><path d="M0 -7q-5 8 0 10q5 -2 0 -10Z" fill="#8fcbe8" stroke="#5aa5c9" stroke-width=".8" opacity="0">
+<animateTransform attributeName="transform" type="translate" values="0 0;${dx / (s || 1)} ${dy / (s || 1)}" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.7;1" dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></path></g>`;
+
+/* 작은 마음싹 (코치용): 머리띠 + 표정 */
+function tukSVG(mood) {
+  const eyes = mood === 'happy'
+    ? '<path d="M43 79q5-6 10 0M67 79q5-6 10 0" fill="none" stroke="#2f3a28" stroke-width="2.6" stroke-linecap="round"/>'
+    : mood === 'think'
+      ? '<path d="M44 76l8 3-8 3M76 76l-8 3 8 3" fill="none" stroke="#2f3a28" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>'
+      : '<ellipse cx="49" cy="79" rx="2.9" ry="3.4" fill="#2f3a28"/><ellipse cx="71" cy="79" rx="2.9" ry="3.4" fill="#2f3a28"/><circle cx="48" cy="77.6" r="1.05" fill="#fff"/><circle cx="70" cy="77.6" r="1.05" fill="#fff"/><path d="M43 72l10 2M77 72l-10 2" stroke="#2f3a28" stroke-width="2" stroke-linecap="round"/>';
+  const mouth = mood === 'happy' ? '<path d="M52 87Q60 98 68 87Z" fill="#8a4a3e"/>'
+    : mood === 'think' ? '<rect x="53" y="86" width="14" height="7" rx="3.5" fill="#fff" stroke="#2f3a28" stroke-width="1.8"/><path d="M53 89.5h14" stroke="#2f3a28" stroke-width="1.2"/>'
+      : '<path d="M54 87Q60 92 66 87" fill="none" stroke="#2f3a28" stroke-width="2.4" stroke-linecap="round"/>';
+  const extra = mood === 'happy' ? '<path d="M104 36l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#f4c542"/><path d="M14 54l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z" fill="#f4c542"/>'
+    : DROP(22, 66, -8, 18, 1.2, 0) + DROP(100, 60, 8, 16, 1.2, .6);
+  return `<svg viewBox="0 0 120 120" aria-hidden="true"><ellipse cx="60" cy="112" rx="34" ry="5" fill="#35503a" opacity=".15"/>
+<path d="M60 52V30" stroke="#4f7d3a" stroke-width="4.5" stroke-linecap="round"/>
+<path d="M60 38Q38 39 29 20Q50 13 60 34Z" fill="#8cbf5a" stroke="#416e42" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M60 34Q80 30 93 13Q70 7 60 31Z" fill="#a9d06c" stroke="#416e42" stroke-width="2.2" stroke-linejoin="round"/>
+<ellipse cx="44" cy="108" rx="10" ry="4.5" fill="#91af63"/><ellipse cx="76" cy="108" rx="10" ry="4.5" fill="#91af63"/>
+<ellipse cx="60" cy="80" rx="41" ry="30" fill="#aac875" stroke="#5d8a4a" stroke-width="2.6"/>
+${HEADBAND(58, 24, 96)}
+<ellipse cx="37" cy="88" rx="6.5" ry="3.6" fill="#ef9a86" opacity=".9"/><ellipse cx="83" cy="88" rx="6.5" ry="3.6" fill="#ef9a86" opacity=".9"/>
+${eyes}${mouth}${extra}</svg>`;
+}
+
+
+/* 홈 훈련장 배경: 헬스장 (덩어리숲 색감) */
+function gymSVG() {
+  const db = (x, y, c) => `<rect x="${x - 9}" y="${y - 2}" width="18" height="4" rx="2" fill="#5a665e"/><rect x="${x - 13}" y="${y - 7}" width="6" height="14" rx="2" fill="${c}"/><rect x="${x + 7}" y="${y - 7}" width="6" height="14" rx="2" fill="${c}"/>`;
+  const flags = ['#db794c', '#f4c542', '#8cbf5a', '#315e48', '#db794c', '#f4c542', '#8cbf5a', '#315e48', '#db794c', '#f4c542', '#8cbf5a'];
+  return `<svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs><linearGradient id="gw" x2="0" y2="1"><stop stop-color="#f1f3e8"/><stop offset="1" stop-color="#e3e8d8"/></linearGradient>
+<linearGradient id="gf" x2="0" y2="1"><stop stop-color="#d7c9ab"/><stop offset="1" stop-color="#c8b791"/></linearGradient>
+<radialGradient id="gl" cx=".5" cy=".55" r=".55"><stop stop-color="#fff9e0" stop-opacity=".9"/><stop offset="1" stop-color="#fff9e0" stop-opacity="0"/></radialGradient></defs>
+<rect width="300" height="300" fill="url(#gw)"/>
+<rect y="146" width="300" height="12" fill="#dde5d0"/><rect y="156" width="300" height="3" fill="#315e48" opacity=".18"/>
+<g opacity=".55"><rect x="6" y="40" width="30" height="100" rx="4" fill="#dfeef0" stroke="#c4d2c4" stroke-width="2"/><path d="M14 52l14-8M14 70l14-8M14 88l14-8" stroke="#fff" stroke-width="3"/>
+<rect x="264" y="40" width="30" height="100" rx="4" fill="#dfeef0" stroke="#c4d2c4" stroke-width="2"/><path d="M272 52l14-8M272 70l14-8M272 88l14-8" stroke="#fff" stroke-width="3"/></g>
+<ellipse cx="150" cy="190" rx="150" ry="110" fill="url(#gl)"/>
+<path d="M0 22Q150 44 300 22" fill="none" stroke="#8a8370" stroke-width="1.2"/>
+${flags.map((c, i) => { const x = 8 + i * 27, y = 22 + 22 * Math.sin(Math.PI * (x / 300)) * .45; return `<path d="M${x} ${y}h16l-8 13Z" fill="${c}" opacity=".9"/>`; }).join('')}
+<circle cx="279" cy="168" r="13" fill="#fff" stroke="#315e48" stroke-width="3"/><rect x="276" y="151" width="6" height="5" rx="1.5" fill="#315e48"/>
+<path d="M279 168V160M279 168l5 3" stroke="#db794c" stroke-width="2.4" stroke-linecap="round"/>
+<rect x="6" y="160" width="46" height="5" rx="2" fill="#6b7a70"/><rect x="10" y="165" width="4" height="40" fill="#6b7a70"/><rect x="44" y="165" width="4" height="40" fill="#6b7a70"/>
+<rect x="6" y="182" width="46" height="4" rx="2" fill="#6b7a70"/>
+${db(29, 175, '#315e48')}${db(29, 196, '#db794c')}
+<path d="M15 158q4-10 0-20" fill="none" stroke="#f4c542" stroke-width="2.5"/><rect x="24" y="142" width="22" height="16" rx="3" fill="#fbfaf4" stroke="#c9c1a8" stroke-width="1.5"/><path d="M28 148h14M28 152h10" stroke="#c9c1a8" stroke-width="1.2"/>
+<rect y="205" width="300" height="95" fill="url(#gf)"/><rect y="203" width="300" height="6" fill="#b9c4a8"/>
+<path d="M0 232H300M0 262H300M60 209L40 300M150 209V300M240 209L260 300" stroke="#bba982" stroke-width="1.2" opacity=".7"/>
+<g transform="translate(262 222)"><path d="M-9 -2a9 9 0 1 1 18 0" fill="none" stroke="#3c4a40" stroke-width="4"/><circle cy="9" r="12" fill="#3c4a40"/><circle cx="-4" cy="5" r="3" fill="#fff" opacity=".2"/></g>
+<g transform="translate(284 236)"><path d="M-6 -2a6 6 0 1 1 12 0" fill="none" stroke="#c2603a" stroke-width="3"/><circle cy="6" r="8" fill="#db794c"/></g>
+<rect x="232" y="246" width="12" height="22" rx="4" fill="#8fcbe8" stroke="#5aa5c9" stroke-width="1.5"/><rect x="234" y="242" width="8" height="5" rx="1.5" fill="#315e48"/>
+<path d="M18 236q16-6 30 0l-2 10q-14-5-26 0Z" fill="#fff" stroke="#d9d2bd" stroke-width="1.2"/>
+</svg>`;
+}
+
+/* 홈 훈련장: ① 덩어리 바벨 들기 */
+function liftSVG() {
+  const D = 1.6, kt = 'keyTimes="0;.42;.62;1" calcMode="spline" keySplines=".4 0 .6 1;0 0 1 1;.4 0 .6 1"';
+  const arm = (lo, hi) => `<path d="${lo}" fill="none" stroke="#8fae62" stroke-width="11" stroke-linecap="round"><animate attributeName="d" values="${lo};${hi};${hi};${lo}" ${kt} dur="${D}s" repeatCount="indefinite"/></path>`;
+  return `<svg viewBox="0 0 200 190" aria-hidden="true">
+<rect x="18" y="168" width="164" height="20" rx="10" fill="#4f6358"/><rect x="18" y="168" width="164" height="5" rx="2.5" fill="#5f7568"/><ellipse cx="100" cy="177" rx="56" ry="6" fill="#35503a" opacity=".16"/>
+${arm('M66 128Q44 108 44 64', 'M66 128Q38 100 44 42')}${arm('M134 128Q156 108 156 64', 'M134 128Q162 100 156 42')}
+<g transform="translate(100 172)"><g><animateTransform attributeName="transform" type="scale" values="1 1;1.05 .94;1.02 .98;1 1" ${kt} dur="${D}s" repeatCount="indefinite"/><g transform="translate(-100 -172)">
+<ellipse cx="76" cy="171" rx="14" ry="6.5" fill="#91af63" stroke="#5d8a4a" stroke-width="1.5"/><ellipse cx="124" cy="171" rx="14" ry="6.5" fill="#91af63" stroke="#5d8a4a" stroke-width="1.5"/>
+<path d="M100 96V80" stroke="#4f7d3a" stroke-width="5" stroke-linecap="round"/>
+<path d="M100 86Q80 86 72 70Q90 63 100 82Z" fill="#8cbf5a" stroke="#416e42" stroke-width="2.2" stroke-linejoin="round"><animateTransform attributeName="transform" type="rotate" values="0 100 84;-8 100 84;0 100 84" dur="${D / 2}s" repeatCount="indefinite"/></path>
+<path d="M100 83Q119 79 129 64Q108 58 100 80Z" fill="#a9d06c" stroke="#416e42" stroke-width="2.2" stroke-linejoin="round"><animateTransform attributeName="transform" type="rotate" values="0 100 82;8 100 82;0 100 82" dur="${D / 2}s" repeatCount="indefinite"/></path>
+<ellipse cx="100" cy="134" rx="47" ry="39" fill="#aac875" stroke="#5d8a4a" stroke-width="2.8"/>
+<ellipse cx="82" cy="114" rx="11" ry="5" fill="#fff" opacity=".3"/>
+${HEADBAND(108, 56, 144)}
+<path d="M79 132l9 4.5-9 4.5M121 132l-9 4.5 9 4.5" fill="none" stroke="#2f3a28" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="91" y="147" width="18" height="9" rx="4.5" fill="#fff" stroke="#2f3a28" stroke-width="2"/><path d="M91 151.5h18M97 147v9M103 147v9" stroke="#2f3a28" stroke-width="1.2"/>
+<ellipse cx="72" cy="148" rx="8" ry="4.5" fill="#ef9a86"/><ellipse cx="128" cy="148" rx="8" ry="4.5" fill="#ef9a86"/>
+</g></g></g>
+${DROP(54, 116, -16, 22, 1.1, 0, 1.3)}${DROP(148, 112, 16, 20, 1.1, .4, 1.3)}${DROP(140, 140, 20, 14, 1.1, .8, 1.1)}${DROP(60, 146, -18, 12, 1.1, .2, 1)}
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 -22;0 -22;0 0" ${kt} dur="${D}s" repeatCount="indefinite"/>
+<rect x="22" y="62" width="156" height="6" rx="3" fill="#4a5a50"/>
+<rect x="8" y="46" width="36" height="38" rx="9" fill="#315e48" stroke="#203f30" stroke-width="2"/><rect x="44" y="55" width="6" height="20" rx="2" fill="#203f30"/>
+<rect x="156" y="46" width="36" height="38" rx="9" fill="#315e48" stroke="#203f30" stroke-width="2"/><rect x="150" y="55" width="6" height="20" rx="2" fill="#203f30"/>
+<text id="plateL" x="24" y="70" text-anchor="middle" font-family="Noto Sans SC,PingFang SC,sans-serif" font-weight="700" font-size="12" fill="#fff">我想</text>
+<text id="plateR" x="176" y="70" text-anchor="middle" font-family="Noto Sans SC,PingFang SC,sans-serif" font-weight="700" font-size="12" fill="#fff">旅游</text>
+<circle cx="44" cy="65" r="8" fill="#aac875" stroke="#5d8a4a" stroke-width="2"/><circle cx="156" cy="65" r="8" fill="#aac875" stroke="#5d8a4a" stroke-width="2"/></g>
+<g stroke="#db794c" stroke-width="3" stroke-linecap="round" opacity="0"><animate attributeName="opacity" values="0;0;1;0" keyTimes="0;.4;.55;.8" dur="${D}s" repeatCount="indefinite"/>
+<path d="M6 38l-6-6M14 32l-2-9M194 38l6-6M186 32l2-9"/></g>
+</svg>`;
+}
+
+/* 홈 훈련장: ② 책상에서 덩어리 외우기 (연필로 쓰며 소리 내어 읽기) */
+function studySVG() {
+  const chunk = (id, x, begin, dx) => `<text id="${id}" x="${x}" y="128" text-anchor="middle" font-family="Noto Sans SC,PingFang SC,sans-serif" font-weight="700" font-size="15" fill="#315e48" opacity="0">我想
+<animateTransform attributeName="transform" type="translate" values="0 0;${dx} -70" dur="2.4s" begin="${begin}s" repeatCount="indefinite"/>
+<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.75;1" dur="2.4s" begin="${begin}s" repeatCount="indefinite"/></text>`;
+  return `<svg viewBox="0 0 200 190" aria-hidden="true">
+<rect x="14" y="172" width="172" height="16" rx="8" fill="#4f6358"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;0 2;0 0" dur=".8s" repeatCount="indefinite"/>
+<path d="M100 76V60" stroke="#4f7d3a" stroke-width="5" stroke-linecap="round"/>
+<path d="M100 66Q80 66 72 50Q90 43 100 62Z" fill="#8cbf5a" stroke="#416e42" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M100 63Q119 59 129 44Q108 38 100 60Z" fill="#a9d06c" stroke="#416e42" stroke-width="2.2" stroke-linejoin="round"/>
+<ellipse cx="100" cy="116" rx="47" ry="40" fill="#aac875" stroke="#5d8a4a" stroke-width="2.8"/>
+${HEADBAND(88, 56, 144)}
+<path d="M80 114q6 4 12 0M108 114q6 4 12 0" fill="none" stroke="#2f3a28" stroke-width="3" stroke-linecap="round"/>
+<path d="M78 105l12 3M122 105l-12 3" stroke="#2f3a28" stroke-width="2.4" stroke-linecap="round"/>
+<ellipse cx="100" cy="128" rx="4" ry="2.5" fill="#8a4a3e"><animate attributeName="ry" values="2;5;2;4;2" dur=".7s" repeatCount="indefinite"/></ellipse>
+<ellipse cx="73" cy="124" rx="7.5" ry="4" fill="#ef9a86"/><ellipse cx="127" cy="124" rx="7.5" ry="4" fill="#ef9a86"/></g>
+<rect x="18" y="146" width="164" height="10" rx="4" fill="#c49a6c" stroke="#8a6440" stroke-width="2"/><rect x="30" y="156" width="10" height="24" fill="#a77d52"/><rect x="160" y="156" width="10" height="24" fill="#a77d52"/>
+<path d="M54 146Q76 134 100 142Q124 134 146 146L146 150Q124 140 100 148Q76 140 54 150Z" fill="#fffdf6" stroke="#8a8370" stroke-width="1.6"/>
+<path d="M64 141q14 -5 28 -1M64 145q14 -5 28 -1M108 140q14 -4 28 1M108 144q14 -4 28 1" stroke="#c9c1a8" stroke-width="1.2" fill="none"/>
+<circle cx="62" cy="146" r="8" fill="#aac875" stroke="#5d8a4a" stroke-width="2"/>
+<g><animateTransform attributeName="transform" type="translate" values="0 0;5 -2;10 0;5 1;0 0" dur=".45s" repeatCount="indefinite"/>
+<g transform="rotate(-35 130 132)"><rect x="126" y="108" width="7" height="30" rx="2" fill="#f4c542" stroke="#8a6a1a" stroke-width="1.3"/><path d="M126 138l3.5 7 3.5-7Z" fill="#f2d3ab" stroke="#8a6a1a" stroke-width="1.2"/><rect x="126" y="106" width="7" height="5" rx="1.5" fill="#ef9a86"/></g>
+<circle cx="128" cy="142" r="8" fill="#aac875" stroke="#5d8a4a" stroke-width="2"/></g>
+${chunk('flyA', 66, 0, -34)}${chunk('flyB', 134, .8, 34)}${chunk('flyC', 70, 1.6, -30)}
+${DROP(54, 96, -14, 20, 1.2, 0, 1.2)}${DROP(148, 92, 14, 20, 1.2, .6, 1.2)}
+</svg>`;
+}
+const BRAND = '<svg viewBox="0 0 512 512"><rect width="512" height="512" rx="110" fill="#315e48"/><g transform="translate(256 262) scale(1.45) translate(-256 -262)"><ellipse cx="256" cy="262" rx="112" ry="96" fill="#f7f1d8"/><path d="M256 292V196" stroke="#4f7d3a" stroke-width="13" stroke-linecap="round"/><path d="M256 206Q196 204 176 154Q232 138 256 198Z" fill="#8cbf5a" stroke="#416e42" stroke-width="6" stroke-linejoin="round"/><path d="M256 200Q308 188 336 138Q272 126 256 192Z" fill="#a9d06c" stroke="#416e42" stroke-width="6" stroke-linejoin="round"/><ellipse cx="256" cy="304" rx="70" ry="48" fill="#aac875" stroke="#5d8a4a" stroke-width="6"/><circle cx="234" cy="298" r="7.5" fill="#2f3a28"/><circle cx="278" cy="298" r="7.5" fill="#2f3a28"/><path d="M245 316Q256 326 267 316" stroke="#2f3a28" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse cx="214" cy="316" rx="10" ry="5" fill="#eaa28d"/><ellipse cx="298" cy="316" rx="10" ry="5" fill="#eaa28d"/></g></svg>';
+const ic = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const IC = {
+  talk: ic('<path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/>'),
+  cards: ic('<rect x="2.5" y="6" width="7" height="11" rx="2"/><rect x="14.5" y="6" width="7" height="11" rx="2"/><path d="M11 11.5h2.5M12.5 10l1.5 1.5-1.5 1.5"/>'),
+  loop: ic('<path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v5h-5"/>'),
+  pen: ic('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>'),
+  chart: ic('<path d="M4 20V11M10 20V5M16 20v-6M3 20h18"/>'),
+  mic: ic('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>'),
+  map: ic('<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>'),
+  gear: ic('<path d="M9 3h6l1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1z"/><circle cx="12" cy="12" r="3"/>'),
+  x: ic('<path d="M6 6l12 12M18 6L6 18"/>'),
+  home: ic('<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/>'),
+  back: ic('<path d="M15 5l-7 7 7 7"/>'),
+  music: ic('<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>'),
+  mute: ic('<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/><path d="M3 3l18 18"/>'),
+  spk: ic('<path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/>')
+};
+
+/* 병음을 글자(음절) 단위로 나눠 덩어리 카드 위에 붙여요 */
+const PY_BASE = { 'ā':'a','á':'a','ǎ':'a','à':'a','ē':'e','é':'e','ě':'e','è':'e','ī':'i','í':'i','ǐ':'i','ì':'i','ō':'o','ó':'o','ǒ':'o','ò':'o','ū':'u','ú':'u','ǔ':'u','ù':'u','ǖ':'v','ǘ':'v','ǚ':'v','ǜ':'v','ü':'v' };
+const PY_INI = ['zh','ch','sh','b','p','m','f','d','t','n','l','g','k','h','j','q','x','r','z','c','s','y','w',''];
+const PY_FIN = ['iang','iong','uang','ueng','ang','eng','ing','ong','ian','iao','uai','uan','van','ai','ei','ao','ou','an','en','in','un','vn','ia','ie','iu','ua','uo','ui','ve','ue','er','a','o','e','i','u','v'];
+const PY_ZERO = new Set(['a','o','e','ai','ei','ao','ou','an','en','ang','eng','er']);
+function pySplitWord(w) {
+  const base = [...w].map(ch => PY_BASE[ch] || ch.toLowerCase()).join('');
+  const memo = {};
+  function go(i) {
+    if (i === base.length) return [];
+    if (i in memo) return memo[i];
+    for (const ini of PY_INI) {
+      if (!base.startsWith(ini, i)) continue;
+      for (const fin of PY_FIN) {
+        if (!ini && !PY_ZERO.has(fin)) continue;
+        if (!base.startsWith(fin, i + ini.length)) continue;
+        let j = i + ini.length + fin.length;
+        for (const r of (base[j] === 'r' && fin !== 'er' ? [1, 0] : [0])) {
+          const rest = go(j + r);
+          if (rest) return (memo[i] = [[i, j + r]].concat(rest));
+        }
+      }
+    }
+    return (memo[i] = null);
+  }
+  const cuts = go(0);
+  return cuts ? cuts.map(([a, b]) => [...w].slice(a, b).join('')) : [w];
+}
+// 문장 전체: 글자마다 [음절, 단어번호]
+function pyChars(zh, py) {
+  // 문장 첫 글자 대문자(Wǒ 등)는 정답 힌트가 되므로 소문자로 (문장 중간의 고유명사 대문자는 그대로)
+  py = py.replace(/(^|[.?!。？！]\s*)(\S)/g, (m, a, b) => a + b.toLowerCase());
+  const words = py.replace(/[，。？！,.?!"“”]/g, ' ').split(/\s+/).filter(Boolean);
+  const syl = []; words.forEach((w, wi) => w.split("'").forEach((part, pi) => pySplitWord(part).forEach((s, si) => syl.push([(pi && !si ? "'" : '') + s, wi]))));
+  const out = []; let k = 0;
+  [...zh].forEach((ch, i) => {
+    if (/[，。？！、]/.test(ch)) { out.push(null); return; }
+    if (ch === '儿' && k > 0 && /r$/.test(syl[k - 1][0]) && i > 0 && zh[i - 1] !== '儿') { out.push(['', syl[k - 1][1]]); return; }
+    out.push(syl[k] || ['?', -1]); k++;
+  });
+  out.ok = k === syl.length;
+  return out;
+}
+function pyOf(zh, py, piece) {
+  const map = pyChars(zh, py), at = zh.indexOf(piece.replace(/[，。？！]$/, ''));
+  if (at < 0) return '';
+  let s = '', lastW = null;
+  for (let i = at; i < at + piece.replace(/[，。？！]$/, '').length; i++) {
+    const m = map[i]; if (!m || !m[0]) continue;
+    s += (lastW !== null && m[1] !== lastW ? ' ' : '') + m[0]; lastW = m[1];
+  }
+  return s;
+}
+
+/* ═════════ 2. 데이터 ═════════ */
+const ALL = [];
+LESSONS.forEach(l => l.s.forEach((s, i) => ALL.push({
+  id: (l.n - 1) * 5 + i + 1, l: l.n, k: i, zh: s[0], py: s[1], ko: s[2], q: s[3], f: s[4], p: s[5].split('|'), sw: s[6], cp: !!l.cp
+})));
+const BYID = {}; ALL.forEach(s => BYID[s.id] = s);
+const LES = n => LESSONS[n - 1];
+/* 덩어리 카드: 짝꿍어휘를 기준으로 자동 분할 (짧은 문장은 직접 지정) */
+const CHUNK_OVERRIDE = {
+  '我是韩国人。': ['我', '是', '韩国人'],
+  '当然可以，你用吧。': ['当然', '可以，', '你', '用吧'],
+  '这个菜辣不辣？': ['这个', '菜', '辣不辣'],
+  '服务员，买单！': ['服务员，', '买', '单']
+};
+const TIMEW = ['今天', '明天', '周末', '最近', '星期天', '周六', '下个月', '明天下午', '晚上', '平时', '这次', '这个周末', '下个星期', '每天早上'];
+const SUBJ = ['我', '你', '我们', '他', '她'];
+function chunkify(s) {
+  const end = (s.zh.match(/[。！？!?]$/) || [''])[0];
+  if (CHUNK_OVERRIDE[s.zh]) return { c: CHUNK_OVERRIDE[s.zh], end };
+  const body = s.zh.replace(/[。！？!?]$/, ''), on = new Array(body.length).fill(-1);
+  s.p.forEach((p, pi) => { const i = body.indexOf(p); if (i >= 0 && on.slice(i, i + p.length).every(v => v < 0)) for (let k = 0; k < p.length; k++) on[i + k] = pi; });
+  const out = []; let cur = '', curK = null;
+  for (let i = 0; i < body.length; i++) {
+    const ch = body[i];
+    if (/[，,、？?]/.test(ch)) { if (cur) { out.push(cur + ch); cur = ''; curK = null; } else if (out.length) out[out.length - 1] += ch; continue; }
+    if (cur && on[i] !== curK) out.push(cur), cur = '';
+    cur += ch; curK = on[i];
+  }
+  if (cur) out.push(cur);
+  return { c: out, end };
+}
+// 주어와 시간어 자리를 바꿔도 맞는 문장은 둘 다 정답 (我周末… / 周末我…)
+function acceptedOrders(chunks) {
+  const res = [chunks];
+  for (let i = 0; i < chunks.length - 1; i++) {
+    const a = chunks[i], b = chunks[i + 1];
+    if ((SUBJ.includes(a) && TIMEW.includes(b)) || (TIMEW.includes(a) && SUBJ.includes(b))) { const v = chunks.slice(); v[i] = b; v[i + 1] = a; res.push(v); }
+  }
+  return res;
+}
+const chOf = n => Math.ceil(n / 5);
+const LV = ['처음', '읽기 툭!', '기억 툭!', '응용 툭!', '완성 툭!'];
+const LVDESC = ['아직 익숙하지 않음', '중국어를 보고 읽을 수 있음', '한국어만 보고 말할 수 있음', '단어를 바꿔 내 문장을 만듦', '질문에 답을 보지 않고 대답함'];
+const LVCOL = ['#e1e6d9', '#c9d6bb', '#8fb07a', '#4f8a62', '#e0a33a'];
+const INTERVAL = [1, 3, 7, 14, 30];      // 첫 학습 → 다음 학습일 → 3일 → 7일 → 14일 → 30일
+const REVIEW_CAP = 15;
+
+/* ═════════ 3. 저장 (로컬 · 비로그인) ═════════ */
+const KEY = 'jindam-tuk100-v1';
+let storeOK = true;
+function blank() {
+  return { v: 1, cards: {}, mine: {}, rts: [], days: [], cpDone: {}, ba: { before: null, after: null },
+    set: { qmode: 'mix', rate: 0.85, sound: true, autoQ: true, bgm: true, py: true }, last: 0, tipI: 0 };
+}
+let S = blank();
+try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); S.set = Object.assign(blank().set, S.set); }
+catch (e) { storeOK = false; }
+function save() { if (!storeOK) return; try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { storeOK = false; } }
+function today() { const d = new Date(); return Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 86400000); }
+const TODAY = () => today();
+function card(id) { return S.cards[id] || (S.cards[id] = { lv: 0, step: null, due: null, lapses: 0, ok: 0, ng: 0, first: null, last: null, ff: false }); }
+const C = id => S.cards[id];
+function markDay() { const t = today(); if (S.days[S.days.length - 1] !== t) { S.days.push(t); if (S.days.length > 400) S.days.shift(); } }
+
+/* ═════════ 4. 유틸 ═════════ */
+const $ = s => document.querySelector(s);
+const app = $('#app');
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const pad2 = n => String(n).padStart(2, '0');
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('on'), 2200); }
+function mark(zh, pieces) {
+  const on = new Array(zh.length).fill(false);
+  pieces.forEach(p => { if (!p) return; let i = zh.indexOf(p); while (i >= 0) { for (let k = 0; k < p.length; k++) on[i + k] = true; i = zh.indexOf(p, i + p.length); } });
+  let out = '', open = false;
+  [...zh].forEach((ch, i) => { if (on[i] && !open) { out += '<mark>'; open = true; } if (!on[i] && open) { out += '</mark>'; open = false; } out += esc(ch); });
+  return out + (open ? '</mark>' : '');
+}
+const fmtS = ms => (ms / 1000).toFixed(1) + '초';
+
+/* ═════════ 5. 소리 · 중국어 음성(TTS) ═════════ */
+let AC = null;
+function blip(kind) {
+  if (!S.set.sound) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    const seq = { ok: [[660, .07], [990, .1]], again: [[300, .09], [240, .12]], tap: [[520, .04]], done: [[523, .08], [659, .08], [784, .08], [1046, .16]] }[kind] || [[440, .05]];
+    let t = AC.currentTime;
+    seq.forEach(([f, d]) => { const o = AC.createOscillator(), g = AC.createGain(); o.type = 'square'; o.frequency.value = f; g.gain.setValueAtTime(.05, t); g.gain.exponentialRampToValueAtTime(.001, t + d); o.connect(g).connect(AC.destination); o.start(t); o.stop(t + d); t += d * .9; });
+  } catch (e) {}
+}
+const TTS = 'speechSynthesis' in window;
+let zhVoice = null;
+// 중국어 음성은 여자 목소리 Tingting(婷婷) 고정. 기기에 없으면 다른 여자 목소리 → 남자 목소리는 쓰지 않음
+const FEMALE = /xiaoxiao|晓晓|huihui|慧慧|yaoyao|瑶瑶|xiaoyi|晓伊|xiaohan|xiaomo|xiaoxuan|xiaorui|xiaoqiu|lili|yu-?shu|shasha|female|女|普通话/i;
+const MALE = /li-?mu|kangkang|康康|yunxi|云希|yunjian|yunyang|yunye|yunfeng|yunhao|male|男/i;
+let voiceName = '';
+function findVoice() {
+  if (!TTS) return;
+  const vs = speechSynthesis.getVoices(), zh = vs.filter(v => /^zh/i.test(v.lang) || /chinese|普通话|mandarin/i.test(v.name));
+  const cn = zh.filter(v => /zh[-_](CN|Hans)/i.test(v.lang) || /普通话|大陆|mainland/i.test(v.name));
+  const pickV = list => list.find(v => /ting-?ting|婷婷/i.test(v.name)) || list.find(v => FEMALE.test(v.name) && !MALE.test(v.name.replace(/female/i, '')));
+  zhVoice = pickV(cn) || pickV(zh) || cn.find(v => !MALE.test(v.name.replace(/female/i, ''))) || null;
+  voiceName = zhVoice ? zhVoice.name : '';
+}
+if (TTS) { findVoice(); speechSynthesis.onvoiceschanged = findVoice; }
+function speak(text) {
+  if (!TTS) { toast('이 브라우저는 음성 재생을 지원하지 않아요'); return; }
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text); u.lang = 'zh-CN'; u.rate = S.set.rate; if (zhVoice) u.voice = zhVoice;
+    if (!zhVoice || !/ting-?ting|婷婷/i.test(zhVoice.name)) u.pitch = 1.12;
+    u.onstart = () => BGM.duck(true); u.onend = u.onerror = () => BGM.duck(false);
+    speechSynthesis.speak(u);
+    if (!zhVoice && speechSynthesis.getVoices().length) toast('이 기기에 중국어 음성이 없을 수 있어요');
+  } catch (e) {}
+}
+
+const sayBtn = text => `<button class="spk" data-say="${esc(text)}" aria-label="중국어 듣기">${IC.spk}</button>`;
+
+/* ═════════ 6. 마음싹 (훈련 도우미 · 육성 요소 없음) ═════════ */
+const TIPS = [
+  '짝꿍어휘는 늘 함께 다니는 단어 묶음이에요. <b>去 + 旅游</b>처럼 덩어리로 꺼내요.',
+  '정답을 보기 전에 꼭 <b>소리 내어</b> 말해 보세요. 그 순간이 진짜 훈련이에요.',
+  '‘혼자 말했어요’는 <b>정답을 보지 않고</b> 말했을 때만 눌러요.',
+  '복습은 <b>다음 날 → 3일 뒤 → 7일 뒤</b>에 돌아와요. 틀린 문장은 더 자주 와요.',
+  '오늘의 학습은 <b>덩어리 맞추기 → 보고 말하기</b> 두 단계예요. 끝나면 내 문장으로 응용해요.',
+  '‘1초 아웃풋’은 목표 방향이에요. 어제의 나보다 조금 빨라지면 충분해요.'
+];
+const LINES = {
+  ko: ['머릿속 번역 말고, 덩어리째 <b>툭!</b>', '틀려도 괜찮아요. 일단 소리 내어 말해 봐요.', '막히면 저를 눌러요. <b>문장틀</b>부터 알려 줄게요.', '완벽한 문장보다 <b>먼저 입을 떼는 것</b>이 목표예요.'],
+  q: ['질문을 듣고 바로 대답해 봐요. 짧아도 좋아요.', '질문 속 단어를 그대로 가져다 쓰면 반은 성공!', '다시 듣고 싶으면 스피커를 눌러요.'],
+  ok: ['좋아요, 입에 붙고 있어요!', '<b>툭!</b> 나왔네요.', '이 문장은 며칠 뒤에 다시 불러올게요.', '방금 그 느낌 그대로!'],
+  again: ['괜찮아요. 덩어리로 한 번 더 만나요.', '다시 만날 때 더 쉬워져요.', '정답을 한 번 더 따라 말하고 넘어가요.'],
+  ans: ['노란 표시가 <b>짝꿍어휘</b>예요. 덩어리로 기억해요.', '들어 보고 한 번 더 따라 말해 볼까요?', '정답과 달라도 뜻이 통했다면 스스로 판단해요.']
+};
+const MOOD = { win: 'happy', happy: 'happy', think: 'think' };
+function coach(html, mood) {
+  return `<div class="coach"><button class="tuk" id="tukBtn" data-act="tuk" aria-label="마음싹에게 도움 받기">${tukSVG(MOOD[mood] || 'idle')}</button><div class="say" id="bubble">${html}</div></div>`;
+}
+function say(html, face) {
+  const b = $('#bubble'); if (b) b.innerHTML = html;
+  const t = $('#tukBtn'); if (!t) return;
+  t.innerHTML = tukSVG(MOOD[face] || 'idle');
+  t.classList.remove('hop', 'shake'); void t.offsetWidth;
+  if (face === 'win') t.classList.add('hop'); else if (face === 'think') t.classList.add('shake');
+}
+function burst() {
+  const r = ($('#tukBtn') || $('#trainer') || document.body).getBoundingClientRect();
+  const cols = ['#5d8a4a', '#e0a33a', '#db794c', '#8cbf5a'];
+  for (let i = 0; i < 8; i++) {
+    const s = document.createElement('span'); s.className = 'fx'; s.textContent = i % 3 ? '✦' : '❀'; s.style.color = cols[i % 4];
+    s.style.left = (r.left + r.width / 2) + 'px'; s.style.top = (r.top + r.height / 3) + 'px'; document.body.appendChild(s);
+    const dx = (Math.random() - .5) * 150, dy = -40 - Math.random() * 70;
+    const a = s.animate([{ transform: 'translate(0,0) scale(.6)', opacity: 1 }, { transform: `translate(${dx}px,${dy}px) scale(1.1)`, opacity: 0 }], { duration: 750, easing: 'ease-out' });
+    a.onfinish = () => s.remove();
+  }
+}
+
+/* ═════════ 5-1. 배경음악: 힐링 (웹오디오로 직접 연주 · 파일 없음) ═════════ */
+const BGM = (() => {
+  let ctx = null, master = null, duckG = null, timer = null, nextT = 0, beat = 0, on = false;
+  const N = m => 440 * Math.pow(2, (m - 69) / 12);
+  // Cmaj7 → Am7 → Fmaj7 → G(add9), 한 화음 4박(박자 60) · 부드러운 패드 + 오르골 같은 음
+  const CH = [[48, 55, 64, 71], [45, 52, 60, 67], [41, 48, 57, 64], [43, 50, 59, 62]];
+  const MEL = [[72, 76, 79, 83, 84], [72, 76, 79, 81, 84], [72, 77, 79, 81, 84], [74, 79, 81, 83, 86]];
+  function init() {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)(); ctx = AC;
+    master = ctx.createGain(); master.gain.value = 0;
+    duckG = ctx.createGain(); duckG.gain.value = 1;
+    const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 2400;
+    const dl = ctx.createDelay(1); dl.delayTime.value = .42; const fb = ctx.createGain(); fb.gain.value = .38; const wet = ctx.createGain(); wet.gain.value = .32;
+    master.connect(lp); lp.connect(duckG); lp.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(duckG); duckG.connect(ctx.destination);
+  }
+  function pad(t, notes, dur) {
+    notes.forEach((m, i) => {
+      const o = ctx.createOscillator(), g = ctx.createGain(), v = (i ? .045 : .06);
+      o.type = i ? 'sine' : 'triangle'; o.frequency.value = N(m); o.detune.value = i % 2 ? 5 : -5;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + 1.5); g.gain.setValueAtTime(v, t + dur - .6); g.gain.linearRampToValueAtTime(0, t + dur + 1.2);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 1.3);
+    });
+    const b = ctx.createOscillator(), bg = ctx.createGain(); b.type = 'sine'; b.frequency.value = N(notes[0] - 12);
+    bg.gain.setValueAtTime(0, t); bg.gain.linearRampToValueAtTime(.07, t + .4); bg.gain.exponentialRampToValueAtTime(.001, t + dur + .5);
+    b.connect(bg); bg.connect(master); b.start(t); b.stop(t + dur + .6);
+  }
+  function bell(t, m, v) {
+    [[1, v], [2, v * .22], [3, v * .06]].forEach(([k, a]) => {
+      const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'sine'; o.frequency.value = N(m) * k;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(a, t + .015); g.gain.exponentialRampToValueAtTime(.0004, t + 2.6 / k);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + 2.7);
+    });
+  }
+  function sched() {
+    while (nextT < ctx.currentTime + 1.2) {
+      const bar = Math.floor(beat / 4) % CH.length, pos = beat % 4;
+      if (pos === 0) pad(nextT, CH[bar], 4);
+      [0, .5].forEach(h => { if (Math.random() < (h ? .22 : .42)) bell(nextT + h, pick(MEL[bar]), .05 + Math.random() * .03); });
+      nextT += 1; beat++;
+    }
+  }
+  function start() {
+    if (on || !S.set.bgm) return;
+    try {
+      if (!ctx) init();
+      if (ctx.state === 'suspended') ctx.resume();
+      on = true; nextT = ctx.currentTime + .15;
+      master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setTargetAtTime(.9, ctx.currentTime, .8);
+      sched(); timer = setInterval(sched, 250);
+    } catch (e) { on = false; }
+  }
+  function stop() {
+    if (!on) return; on = false; clearInterval(timer);
+    try { master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setTargetAtTime(0, ctx.currentTime, .25); } catch (e) {}
+  }
+  function duck(d) { if (duckG) try { duckG.gain.setTargetAtTime(d ? .25 : 1, ctx.currentTime, .12); } catch (e) {} }
+  document.addEventListener('visibilitychange', () => { if (!ctx) return; if (document.hidden) ctx.suspend(); else if (on) ctx.resume(); });
+  return { start, stop, duck, get on() { return on; } };
+})();
+// 브라우저 정책상 첫 터치 뒤에 음악이 시작돼요
+const kick = () => { if (S.set.bgm && !BGM.on) BGM.start(); };
+document.addEventListener('pointerdown', kick, true);
+document.addEventListener('keydown', kick, true);
+
+/* ═════════ 7. 학습 규칙 (숙련 단계 + 간격 반복) ═════════ */
+function advance(c, t) { c.step = Math.min((c.step == null ? -1 : c.step) + 1, INTERVAL.length - 1); c.due = t + INTERVAL[c.step]; }
+function grade(id, ok, ctx) {
+  const c = card(id), t = today(); markDay();
+  if (c.first == null) c.first = t;
+  c.last = t; ok ? c.ok++ : c.ng++;
+  if (ctx.retry) { c.lv = Math.max(c.lv, ok ? 2 : 1); return; }   // 같은 세션 재도전: 간격은 그대로
+  const fresh = c.step == null;
+  if (ok) {
+    c.lv = Math.max(c.lv, 2);
+    if (fresh) { c.step = 0; c.due = t + INTERVAL[0]; }
+    else if (ctx.hint) { c.due = t + 1; }
+    else if (c.due != null && c.due <= t) { advance(c, t); }
+    else if (ctx.mode === 'check') { c.due = Math.max(c.due || 0, t + 1); }
+    // 완성 툭!: 간격을 두고(다음 날·3일 뒤) 두 번 이상 힌트 없이 성공
+    if (!fresh && !ctx.hint && ctx.mode === 'check' && c.step >= 2) c.lv = 4;
+    if (ctx.rt) { S.rts.push([t, Math.round(ctx.rt)]); if (S.rts.length > 600) S.rts.shift(); }
+  } else {
+    if (fresh) { c.lv = Math.max(c.lv, 1); c.ff = true; }
+    else { c.lapses++; c.lv = Math.max(1, c.lv - 1); }
+    c.step = 0; c.due = t + (ctx.mode === 'learn' ? 0 : 1);
+  }
+}
+function dueList() {
+  const t = today();
+  return ALL.filter(s => { const c = C(s.id); return c && c.step != null && c.due <= t; })
+    .map(s => { const c = C(s.id); return { s, score: (t - c.due + 1) / INTERVAL[c.step] + c.lapses * 1.5 + (c.ff ? 1 : 0) + (c.lv <= 1 ? 1 : 0) + Math.random() * .3 }; })
+    .sort((a, b) => b.score - a.score).map(x => x.s);
+}
+function seenList() { return ALL.filter(s => C(s.id) && C(s.id).lv > 0); }
+function buildReview(limit) {
+  limit = limit || 12;
+  let due = dueList().slice(0, REVIEW_CAP);
+  const out = due.slice(0, Math.max(limit, Math.min(due.length, REVIEW_CAP)));
+  if (out.length < 6) {   // 복습 예정이 적으면 오래 안 본 문장·약한 문장으로 채움
+    const ids = new Set(out.map(s => s.id));
+    const extra = seenList().filter(s => !ids.has(s.id)).sort((a, b) => (C(a.id).lv - C(b.id).lv) || (C(a.id).last - C(b.id).last)).slice(0, 8 - out.length);
+    extra.forEach(s => out.push(Object.assign({ early: true }, s)));
+  }
+  return out;
+}
+function pmodeFor(s, mode) {
+  const m = S.set.qmode;
+  if (!s.q) return 'ko';
+  if (m === 'q') return 'q';
+  if (m === 'ko') return 'ko';
+  return mode === 'learn' ? (s.l >= 11 ? 'q' : 'ko') : (Math.random() < .5 ? 'q' : 'ko');
+}
+function counts() {
+  let seen = 0, solid = 0; const by = [0, 0, 0, 0, 0];
+  ALL.forEach(s => { const c = C(s.id), lv = c ? c.lv : 0; by[lv]++; if (lv > 0) seen++; if (lv >= 3) solid++; });
+  return { seen, solid, by, due: dueList().length };
+}
+function nextLesson() {
+  for (let n = Math.max(1, S.last || 1); n <= 20; n++) if (LES(n).s.some((_, i) => !(C((n - 1) * 5 + i + 1) || {}).lv)) return n;
+  for (let n = 1; n <= 20; n++) if (LES(n).s.some((_, i) => !(C((n - 1) * 5 + i + 1) || {}).lv)) return n;
+  return 20;
+}
+
+function startSession(kind, items, title, extra) {
+  SES = Object.assign({ kind, title, q: items, i: 0, res: [], hint: 0, revealed: false, t0: 0, rt: 0, streak: 0, best: 0, cue: false }, extra || {});
+  go('drill');
+}
+function startLesson(n) {
+  S.last = Math.max(S.last || 0, n); save();
+  const ss = LES(n).s.map((_, i) => BYID[(n - 1) * 5 + i + 1]);
+  const items = ss.map(s => ({ id: s.id, mode: 'order', pm: 'ko', build: true, stage: 1 })).concat(ss.map(s => ({ id: s.id, mode: 'learn', pm: pmodeFor(s, 'learn'), stage: 2 })));
+  startSession('learn', items, `${pad2(n)}강 학습`, { lesson: n });
+}
+function startCheckpoint(n) {
+  S.last = Math.max(S.last || 0, n); save();
+  const fresh = LES(n).s.map((_, i) => ({ id: (n - 1) * 5 + i + 1, mode: 'learn', pm: 'ko', tag: '새 응용' }));
+  const pool = ALL.filter(s => s.l < n);
+  const t = today();
+  const scored = pool.map(s => { const c = C(s.id); let sc = Math.random();
+    if (c && c.step != null) sc += (c.due <= t ? 2 : 0) + c.lapses + (4 - c.lv) * .4; else sc += c && c.lv ? 1.5 : .5; return { s, sc }; })
+    .sort((a, b) => b.sc - a.sc).slice(0, 10).map(x => x.s);
+  const cum = shuffle(scored).map(s => ({ id: s.id, mode: 'check', pm: pmodeFor(s, 'check'), tag: '누적' }));
+  startSession('cp', fresh.concat(cum), LES(n).t, { lesson: n });
+}
+function startReview(ids) {
+  const list = ids ? ids.map(id => BYID[id]) : buildReview();
+  if (!list.length) { toast('먼저 오늘의 5문장 툭!으로 문장을 익혀 주세요'); return; }
+  startSession('review', list.map(s => (C(s.id).lv <= 1 && C(s.id).ng > 0 ? orderItem(s, { tag: '덩어리부터' }) : { id: s.id, mode: 'check', pm: pmodeFor(s, 'check'), tag: s.early ? '미리 툭' : '' })), '다시 툭!');
+}
+
+function trapFor(s, chunks) {
+  const pool = ALL.filter(x => x.l === s.l && x.id !== s.id).flatMap(x => chunkify(x).c.map(t => t.replace(/[，？]$/, '')))
+    .filter(t => t.length >= 1 && !chunks.some(c => c.replace(/[，？]$/, '') === t) && !s.zh.includes(t));
+  return pool.length ? pick(pool) : null;
+}
+function orderItem(s, opts) { return Object.assign({ id: s.id, mode: 'order', pm: 'ko', trap: true }, opts || {}); }
+function startOrder(n) {
+  S.last = Math.max(S.last || 0, n); save();
+  startSession('order', LES(n).s.map((_, i) => orderItem(BYID[(n - 1) * 5 + i + 1])), `${pad2(n)}강 · 덩어리 맞추기`, { lesson: n });
+}
+function startOrderMix() {
+  const seen = seenList();
+  if (!seen.length) { toast('먼저 강을 하나 골라 덩어리 맞추기를 해 봐요'); lessonSheet(nextLesson()); return; }
+  const list = shuffle(seen).sort((a, b) => C(a.id).lv - C(b.id).lv).slice(0, 8);
+  startSession('order', shuffle(list).map(s => orderItem(s)), '덩어리 맞추기 · 섞어서');
+}
+function gradeOrder(id, ok, ctx) {
+  const c = card(id), t = today(); markDay();
+  if (c.first == null) c.first = t;
+  c.last = t; c.lv = Math.max(c.lv, 1); c.ord = (c.ord || 0) + 1;
+  if (c.step == null) { c.step = 0; c.due = t + 1; }           // 처음 만난 문장 → 다음 학습일에 ‘말하기’로 복습
+  else if (ctx.review && c.due <= t) { c.due = t + 1; }        // 순서 맞추기는 회상이 아니므로 간격을 늘리지 않음
+}
+function nextItem() {
+  SES.i++; SES.hint = 0; SES.revealed = false; SES.t0 = 0; SES.cue = false; SES.busy = false; SES.ord = null;
+  if (SES.i >= SES.q.length) finishSession(); else renderDrill();
+}
+
+function drillAct(a) {
+  const it = SES.q[SES.i], s = BYID[it.id];
+  if (a === 'reveal' && !SES.revealed) { SES.rt = performance.now() - SES.t0; SES.revealed = true; clearInterval(timerInt); blip('tap'); renderDrill(); if (S.set.autoQ) speak(s.zh); return; }
+  if (a === 'hint' && !SES.revealed && SES.hint < 2) { SES.hint++; blip('tap'); clearInterval(timerInt); renderDrill(); return; }
+  if (a === 'cue') { SES.cue = true; clearInterval(timerInt); renderDrill(); return; }
+  if ((a === 'ok' || a === 'again') && SES.revealed && !SES.busy) {
+    SES.busy = true;
+    const ok = a === 'ok';
+    grade(it.id, ok, { mode: it.mode, hint: SES.hint > 0, rt: SES.rt, retry: !!it.retry }); save();
+    SES.res.push({ id: it.id, ok, rt: SES.rt, hint: SES.hint, retry: !!it.retry, mode: it.mode });
+    if (ok) { SES.streak++; SES.best = Math.max(SES.best, SES.streak); blip('ok'); say(pick(LINES.ok), 'win'); burst(); }
+    else { SES.streak = 0; blip('again'); say(pick(LINES.again), 'think');
+      if (!it.retry) SES.q.splice(Math.min(SES.q.length, SES.i + 3), 0, Object.assign({}, it, { retry: true, mode: 'order', trap: false })); }
+    setTimeout(() => {
+      nextItem();
+    }, ok ? 520 : 380);
+  }
+}
+function finishSession() {
+  if (SES.kind === 'cp') { S.cpDone[SES.lesson] = true; }
+  save(); go('result');
+}
+
+function runClock(sec, el, onEnd) {
+  clearInterval(mInt); const t0 = performance.now();
+  mInt = setInterval(() => { const left = Math.max(0, sec - (performance.now() - t0) / 1000); if (!document.body.contains(el)) { clearInterval(mInt); return; }
+    el.textContent = Math.ceil(left); if (left <= 0) { clearInterval(mInt); blip('done'); onEnd && onEnd(); } }, 100);
+}
+
+
+/* ═════════ 8. 화면 전환 ═════════ */
+let screen = 'home', SES = null, timerInt = null, homeInt = null;
+function go(name, arg) {
+  clearInterval(timerInt); timerInt = null; clearInterval(homeInt); homeInt = null; closeModal();
+  if (TTS) try { speechSynthesis.cancel(); } catch (e) {}
+  screen = name; app.className = name;
+  ({ home: renderHome, drill: renderDrill, result: renderResult, mine: renderMine, report: renderReport, ba: renderBA })[name](arg);
+}
+function openModal(html) { const m = $('#modal'); m.innerHTML = `<div class="sheet" role="dialog" aria-modal="true">${html}</div>`; m.hidden = false; }
+function closeModal() { const m = $('#modal'); m.hidden = true; m.innerHTML = ''; }
+const sheetHead = (title, back) => `<div class="head">${back ? `<button class="round" data-act="${back.act}" ${back.ch ? `data-ch="${back.ch}"` : ''} aria-label="뒤로">${IC.back}</button>` : ''}<h3 class="grow">${title}</h3><button class="round" data-act="close" aria-label="닫기">${IC.x}</button></div>`;
+const topBar = (title, sub, left) => `<header class="top"><button class="round" data-act="${left || 'home'}" aria-label="${left === 'quit' ? '그만하기' : '홈으로'}">${left === 'quit' ? IC.x : IC.home}</button><h2>${title}${sub ? `<small>${sub}</small>` : ''}</h2><span id="topRight"></span></header>`;
+
+/* ═════════ 9. 홈 (한 화면) ═════════ */
+function renderHome() {
+  const k = counts(), nx = nextLesson(), L = LES(nx), ch = chOf(nx);
+  let msg;
+  if (k.seen === 0 && !S.ba.before) msg = '시작 전에 <b>Before 1분 말하기</b>부터! <button class="pill" style="border:0" data-act="ba" data-tab="before">Before 남기기</button>';
+  else if (k.seen === 0) msg = '강의를 들은 뒤 여기서 <b>직접 말하는</b> 훈련을 해요.';
+  else if (k.due > REVIEW_CAP) msg = `밀린 복습 <b>${k.due}개</b> · 오늘은 ${REVIEW_CAP}개만 해도 충분해요.`;
+  else if (k.due > 0) msg = `다시 만날 문장 <b>${k.due}개</b> · <b>다시 툭!</b>부터 몸을 풀어요.`;
+  else msg = `오늘 복습 끝! 다음 훈련은 <b>${pad2(nx)}강</b>이에요.`;
+  const cpN = [5, 10, 15, 20].filter(n => S.cpDone[n]).length;
+  const label = L.cp ? (L.cp === 4 ? '툭! FINAL' : '체크포인트 0' + L.cp) : pad2(nx) + '강';
+  app.innerHTML = `
+    <header class="top"><div class="brand"><span class="brand-icon">${BRAND}</span><div><small>진심이 담긴 중국어 · 진담중국어</small><strong>진담 <em>100문장 툭!</em></strong></div></div>
+      <button class="round" data-act="bgm" id="bgmBtn" aria-label="배경음악 ${S.set.bgm ? '끄기' : '켜기'}">${S.set.bgm ? IC.music : IC.mute}</button><button class="round" data-act="settings" aria-label="설정">${IC.gear}</button></header>
+    <section class="scene gym" aria-label="진담체육관에서 훈련하는 마음싹"><div class="gymbg">${gymSVG()}</div>
+      <div class="tl"><span class="pill white">진담체육관 · ${ch}주차</span></div>
+      <div class="tr"><span class="pill orange" id="reps">덩어리 ×0</span></div>
+      <div class="board"><small>오늘의 훈련 · ${label}</small><b class="zh">${esc(L.g)}</b><p id="bubble">${msg}</p></div>
+      <button class="trainer" id="trainer" data-act="tuk" aria-label="마음싹에게 학습 팁 듣기"><div class="pose lift on">${liftSVG()}</div><div class="pose study">${studySVG()}</div></button>
+      <div class="meter"><div class="nums"><span>도전 <b>${k.seen}</b> · 입에 붙음 <b>${k.solid}</b></span><span>/ 100문장</span></div>
+        <div class="bar2"><u style="width:${k.seen}%"></u><i style="width:${k.solid}%"></i><s style="left:25%"></s><s style="left:50%"></s><s style="left:75%"></s></div></div>
+    </section>
+    <button class="btn primary main" data-act="lesson" data-n="${nx}"><span><small>오늘의 학습 · ${label}</small><b>${esc(L.t)}</b><small class="steps">${L.cp ? '새 응용 문장 + 누적 복습' : '덩어리 맞추기 → 보고 말하기'}</small></span><span class="arrow">→</span></button>
+    <div class="sub3">
+      <button class="btn line" data-act="review">${IC.loop}<span>다시 툭!</span>${k.due ? `<i class="badge">${Math.min(k.due, 99)}</i>` : ''}</button>
+      <button class="btn line" data-act="lessons" data-ch="${ch}">${IC.map}<span>강의 목록</span></button>
+      <button class="btn line" data-act="report">${IC.chart}<span>성장 기록</span></button>
+    </div>`;
+  // 훈련 애니메이션: 바벨 4번 들기 ↔ 책상에서 덩어리 외우기, 원판·글자는 지금 강의 짝꿍어휘로 바뀜
+  const pool = [...new Set(L.s.flatMap(x => x[5].split('|')))].filter(p => p.length <= 3);
+  const pieces = pool.length >= 2 ? pool : ['我想', '去', '旅游'];
+  let reps = 0, mode = 'lift';
+  const setT = (id, t) => { const n = document.getElementById(id); if (n && n.firstChild) { n.firstChild.nodeValue = t; if (/^plate/.test(id)) n.setAttribute('font-size', t.length > 2 ? 9.5 : 12); } };
+  const swap = () => { const sh = shuffle(pieces); setT('plateL', sh[0]); setT('plateR', sh[1] || sh[0]); setT('flyA', sh[0]); setT('flyB', sh[1] || sh[0]); setT('flyC', sh[2] || sh[0]); };
+  swap();
+  homeInt = setInterval(() => {
+    reps++; const r = $('#reps'); if (r) r.textContent = '덩어리 ×' + reps;
+    swap();
+    if (reps % 4 === 0) { mode = mode === 'lift' ? 'study' : 'lift'; document.querySelectorAll('.pose').forEach(p => p.classList.toggle('on', p.classList.contains(mode))); }
+  }, 1600);
+}
+
+/* ═════════ 10. 강 고르기 · 강 상세 (시트) ═════════ */
+function openLessons(ch) {
+  ch = ch || chOf(nextLesson()); const nx = nextLesson();
+  const rows = [1, 2, 3, 4, 5].map(i => {
+    const n = (ch - 1) * 5 + i, l = LES(n);
+    const pips = l.s.map((_, k2) => `<i class="lv${(C((n - 1) * 5 + k2 + 1) || {}).lv || 0}"></i>`).join('');
+    return `<button class="lrow ${l.cp ? 'cp' : ''} ${n === nx ? 'next' : ''}" data-act="lesson" data-n="${n}"><span class="num">${l.cp ? (l.cp === 4 ? 'FIN' : '툭!') : pad2(n)}</span>
+      <span class="grow"><b>${esc(l.cp ? l.t : l.t)}</b><small>${esc(l.g)}</small></span><span class="pips">${pips}</span></button>`;
+  }).join('');
+  openModal(`${sheetHead('강의 목록')}
+    <div class="tabs">${CHAPTERS.map(c => `<button class="${c.n === ch ? 'on' : ''}" data-act="lessons" data-ch="${c.n}">${c.n}주차</button>`).join('')}</div>
+    <p class="note" style="margin:10px 2px 0"><b>${ch}주차</b> ${esc(CHAPTERS[ch - 1].t)} · 목표: ${esc(CHAPTERS[ch - 1].goal)}</p>${rows}`);
+}
+function lessonSheet(n) {
+  const L = LES(n), ids = L.s.map((_, i) => (n - 1) * 5 + i + 1);
+  const anySeen = ids.some(id => (C(id) || {}).lv > 0);
+  const rows = ids.map(id => { const s = BYID[id], lv = (C(id) || {}).lv || 0;
+    return `<li><span class="dot lv${lv}"></span><div class="grow"><div class="zh">${lv ? esc(s.zh) : '<span class="muted">· · · · ·</span>'}</div><small>${esc(s.ko)}</small></div><span class="pill">${LV[lv]}</span></li>`; }).join('');
+  let actions;
+  if (L.cp) {
+    const sec = [0, 30, 40, 60, 60][L.cp];
+    actions = `<button class="btn primary" style="width:100%" data-act="startcp" data-n="${n}"><span>체크포인트 시작<small>새 응용 5문장 + ${n - 1}강까지 누적 10문항</small></span></button>
+      <div class="btns" style="margin-top:8px"><button class="btn line" data-act="speak" data-n="${n}">${sec}초 말하기 미션</button>${L.cp === 4 ? '<button class="btn line" data-act="ba" data-tab="after">After 1분 말하기</button>' : ''}</div>`;
+  } else {
+    actions = `<button class="btn primary" style="width:100%" data-act="start" data-n="${n}"><span>${anySeen ? '다시 학습하기' : '학습 시작'}<small>① 덩어리 맞추기 → ② 보고 말하기</small></span></button>
+      ${anySeen ? `<div class="btns" style="margin-top:8px"><button class="btn line" data-act="relesson" data-n="${n}">이 강 복습만</button><button class="btn line" data-act="mine" data-l="${n}">내 문장 툭!</button></div>` : ''}`;
+  }
+  openModal(`${sheetHead(`${L.cp ? '' : pad2(n) + '강 · '}${esc(L.t)}`, { act: 'lessons', ch: chOf(n) })}
+    <div class="row"><span class="pill ${L.cp ? 'gold' : ''}">${L.cp ? 'CHECKPOINT' : chOf(n) + '주차'}</span><span class="tiny zh">${esc(L.g)}</span></div>
+    <ul class="slist">${rows}</ul>${actions}`);
+}
+function orderSheet() {
+  const nx = nextLesson(), anySeen = seenList().length;
+  openModal(`${sheetHead('덩어리 맞추기')}
+    <p class="note" style="margin:0 0 12px">한국어 뜻을 보고 짝꿍어휘 카드를 순서대로 눌러 문장을 완성해요. <b>함정 카드 1장</b>은 쓰지 않아야 해요. 맞춘 뒤에는 꼭 소리 내어 말해요.</p>
+    <button class="btn primary" style="width:100%" data-act="ostart" data-n="${nx}"><span>${pad2(nx)}강 · ${esc(LES(nx).t)}<small>다음 강 문장 5개</small></span></button>
+    <div class="btns" style="margin-top:8px"><button class="btn secondary" data-act="omix" ${anySeen ? '' : 'disabled'}><span>배운 문장 섞어서<small>${anySeen ? '약한 문장부터 8개' : '문장을 먼저 익히면 열려요'}</small></span></button><button class="btn line" data-act="lessons"><span>다른 강 고르기</span></button></div>`);
+}
+
+/* ═════════ 11. 학습 화면 공통 ═════════ */
+function progBar() {
+  return `<div class="prog">${SES.q.map((x, i) => `<i class="${i < SES.i ? (SES.res[i] && SES.res[i].ok ? 'ok' : 'no') : i === SES.i ? 'cur' : ''}"></i>`).join('')}</div>`;
+}
+function startTimer() {
+  if (!SES.t0) SES.t0 = performance.now();
+  clearInterval(timerInt);
+  timerInt = setInterval(() => { const t = $('#timer'); if (t) t.textContent = fmtS(performance.now() - SES.t0); }, 100);
+}
+function subLine() {
+  const it = SES.q[SES.i];
+  if (it.stage) { const same = SES.q.filter(x => x.stage === it.stage), idx = SES.q.slice(0, SES.i + 1).filter(x => x.stage === it.stage).length;
+    return `${it.stage}단계 · ${it.stage === 1 ? '덩어리 맞추기' : '보고 말하기'} ${idx}/${same.length}${SES.streak >= 2 ? ` · 연속 툭! ×${SES.streak}` : ''}`; }
+  return `${SES.i + 1} / ${SES.q.length}${SES.streak >= 2 ? ` · 연속 툭! ×${SES.streak}` : ''}`;
+}
+
+/* ── 덩어리훈련: 짧은 덩어리 → 늘려 가며 → 완성 문장, 문장 길이별 타이머(5~30초) ── */
+function stagesFor(s, build) {
+  const fin = chunkify(s), list = [];
+  if (build && STAGES[s.zh]) STAGES[s.zh].split('|').forEach(x => { const [c, ko] = x.split('='); list.push({ c: c.split('/'), ko, end: '', zh: c.replace(/\//g, '') }); });
+  list.push({ c: fin.c, ko: s.ko, end: fin.end, zh: s.zh, full: true });
+  return list;
+}
+const stageSecs = st => Math.min(30, Math.max(5, Math.round(st.c.join('').replace(/[，？。！]/g, '').length * 1.2)));
+function setupOrder(it, s) {
+  SES.ord = { stages: stagesFor(s, it.build), si: 0, wrong: 0, hint: 0, tout: 0 };
+  SES.t0 = performance.now();
+  setupStage();
+}
+function setupStage() {
+  const o = SES.ord, st = o.stages[o.si], s = BYID[SES.q[SES.i].id];
+  const cards = st.c.map(t => ({ t, py: pyOf(s.zh, s.py, t) }));
+  let sh = shuffle(cards), g = 0;
+  while (cards.length > 1 && sh.map(c => c.t).join('') === st.c.join('') && g++ < 8) sh = shuffle(cards);
+  const secs = stageSecs(st);
+  Object.assign(o, { cards: sh, real: st.c.length, end: st.end, acc: acceptedOrders(st.c), placed: [], bad: -1, sdone: false, secs, tStart: performance.now() });
+}
+function orderPrefix() {
+  const o = SES.ord, txt = o.placed.map(i => o.cards[i].t);
+  let best = 0, seq = o.acc[0];
+  o.acc.forEach(acc => { let k = 0; while (k < txt.length && txt[k] === acc[k]) k++; if (k > best) { best = k; seq = acc; } });
+  return { k: best, seq };
+}
+function countdown() {
+  clearInterval(timerInt);
+  timerInt = setInterval(() => {
+    const o = SES && SES.ord; if (!o || o.sdone || o.bad >= 0 || screen !== 'drill') return;
+    const left = o.secs - (performance.now() - o.tStart) / 1000;
+    const cd = $('#cd'), tb = $('#tbar');
+    if (cd) cd.textContent = '⏱ ' + Math.max(0, Math.ceil(left));
+    if (tb) { tb.style.width = Math.max(0, left / o.secs * 100) + '%'; tb.parentElement.classList.toggle('low', left <= 3); }
+    if (left <= 0) {
+      o.tout++; o.wrong++; o.si = 0; setupStage(); blip('again');
+      renderOrder(SES.q[SES.i], BYID[SES.q[SES.i].id]);
+      say('<b>시간 초과!</b> 이 문장의 <b>첫 단계</b>부터 다시 해요. 이번엔 더 빨리 툭!', 'think');
+    }
+  }, 100);
+}
+function renderOrder(it, s) {
+  const o = SES.ord, st = o.stages[o.si], last = o.si === o.stages.length - 1;
+  const num = SES.q.slice(0, SES.i + 1).filter(x => x.mode === 'order').length;
+  const pyOn = S.set.py !== false;
+  const card = (c, extra, attrs) => `<button class="oc ${extra}" ${attrs}>${pyOn && c.py ? `<small class="py">${esc(c.py)}</small>` : ''}${esc(c.t)}</button>`;
+  const rail = [];
+  for (let k = 0; k < o.real; k++) {
+    const ci = o.placed[k];
+    rail.push(ci == null ? `<span class="slot"></span>` : card(o.cards[ci], `placed ${o.sdone ? 'good' : o.bad >= 0 && k >= o.bad ? 'bad' : ''}`, `data-act="oback" data-i="${k}" ${o.sdone ? 'disabled' : ''}`));
+  }
+  const tray = o.cards.map((c, i) => card(c, o.placed.includes(i) ? 'used' : '', `data-act="opick" data-i="${i}"`).replace('<button', `<button data-n="${i + 1}"`)).join('');
+  const line = o.sdone ? (last ? '완성! 이제 <b>소리 내어</b> 문장 전체를 말해요.' : `<b>${o.si + 1}단계</b> 완성! 소리 내어 말하고 덩어리를 더 붙여 봐요.`)
+    : o.bad >= 0 ? `앞의 <b>${o.bad}장</b>은 맞아요. 그다음 덩어리를 다시 골라요.`
+      : o.si === 0 && o.stages.length > 1 ? '짧은 덩어리부터 시작해요. <b>소리 내며</b> 카드를 눌러요.'
+        : o.si > 0 ? '덩어리가 늘어났어요. 앞에서 만든 덩어리를 떠올려요.' : '카드를 누를 때마다 <b>소리 내어</b> 말해요.';
+  const pys = st.c.map(t => pyOf(s.zh, s.py, t)).join(' ');
+  const left = Math.max(0, o.secs - (performance.now() - o.tStart) / 1000), pct = left / o.secs * 100;
+  app.innerHTML = `${topBar(esc(SES.title), subLine(), 'quit')}${progBar()}
+    ${coach(line, o.sdone ? 'win' : o.bad >= 0 ? 'think' : '')}
+    <section class="card">
+      <div class="meta"><span class="pill ${s.cp ? 'gold' : ''}">문장 ${num} · ${o.si + 1}/${o.stages.length}단계</span>${it.retry ? '<span>다시 연습</span>' : ''}<span class="grow"></span>
+        <button class="pill" style="border:0" data-act="pytog">병음 ${pyOn ? 'ON' : 'OFF'}</button>${o.sdone ? '' : `<span class="cd" id="cd">⏱ ${Math.ceil(left)}</span>`}</div>
+      <div class="prompt">${esc(st.ko)}</div>
+      ${o.sdone ? '' : `<div class="tbar ${left <= 3 ? 'low' : ''}"><i id="tbar" style="width:${pct}%"></i></div>`}
+      <div class="rail ${o.bad >= 0 ? 'shakex' : ''}">${rail.join('')}<span class="endp">${esc(o.end)}</span></div>
+      ${o.sdone ? `<div class="ans"><div class="zhs">${mark(st.zh, s.p)}${sayBtn(st.zh)}</div><div class="py">${esc(pys)}</div>${last ? `<span class="rt">${fmtS(SES.rt)}${o.tout ? ' · 시간 초과 ' + o.tout : ''}${o.wrong - o.tout ? ' · 다시 고름 ' + (o.wrong - o.tout) : ''}${o.hint ? ' · 힌트 ' + o.hint : ''}</span>` : ''}</div>`
+        : `<div class="tray">${tray}</div>`}
+    </section>
+    ${o.sdone ? `<div class="btns"><button class="btn primary" data-act="onext">${last ? '따라 말했어요 · 다음 문장' : `말해 봤어요 · ${o.si + 2}단계로 →`} <span class="k">Enter</span></button></div>`
+      : `<div class="btns"><button class="btn line" data-act="oundo" ${o.placed.length ? '' : 'disabled'}>되돌리기</button><button class="btn secondary" data-act="ohint">마음싹 힌트</button></div>`}`;
+  if (!o.sdone) countdown(); else clearInterval(timerInt);
+}
+function orderAct(a, i) {
+  const o = SES.ord; if (!o || SES.busy) return;
+  const it = SES.q[SES.i], s = BYID[it.id];
+  if (o.sdone) {
+    if (a === 'onext') { if (o.si < o.stages.length - 1) { o.si++; setupStage(); renderOrder(it, s); } else nextItem(); }
+    return;
+  }
+  if (o.bad >= 0) return;
+  if (a === 'opick' && o.cards[i] && !o.placed.includes(i) && o.placed.length < o.real) { o.placed.push(i); blip('tap'); }
+  else if (a === 'oback') o.placed.splice(i, 1);
+  else if (a === 'oundo') o.placed.pop();
+  else if (a === 'ohint') {
+    const { k, seq } = orderPrefix(); o.placed.length = k;
+    const ci = o.cards.findIndex((c, j) => c.t === seq[k] && !o.placed.includes(j));
+    if (ci >= 0) { o.placed.push(ci); o.hint++; }
+  }
+  if (o.placed.length === o.real) {
+    const { k } = orderPrefix(), st = o.stages[o.si], last = o.si === o.stages.length - 1;
+    if (k === o.real) {
+      o.sdone = true; clearInterval(timerInt);
+      if (last) {
+        SES.rt = performance.now() - SES.t0;
+        const ok = !o.wrong && !o.hint;
+        gradeOrder(it.id, ok, { review: SES.kind === 'review' }); save();
+        SES.res.push({ id: it.id, ok, rt: SES.rt, hint: o.hint, retry: !!it.retry, mode: 'order' });
+        if (ok) { SES.streak++; SES.best = Math.max(SES.best, SES.streak); } else SES.streak = 0;
+      }
+      blip('ok'); renderOrder(it, s); if (last) burst();
+      if (S.set.autoQ) speak(st.zh);
+      return;
+    }
+    o.wrong++; o.bad = k; blip('again'); renderOrder(it, s);
+    SES.busy = true;
+    setTimeout(() => { o.placed.length = o.bad; o.bad = -1; SES.busy = false; if (screen === 'drill' && SES.ord === o) renderOrder(it, s); }, 950);
+    return;
+  }
+  renderOrder(it, s);
+}
+
+function renderDrill() {
+  const it = SES.q[SES.i], s = BYID[it.id];
+  if (it.mode === 'order') { if (!SES.ord) setupOrder(it, s); renderOrder(it, s); return; }
+  const qMode = it.pm === 'q', c = C(it.id);
+  const hintHtml = SES.hint >= 1 && !SES.revealed ? `<div class="hint">문장틀<div class="f">${esc(s.f)}</div>${SES.hint >= 2 ? `짝꿍어휘<div class="chips">${s.p.map(p => `<span>${esc(p)}</span>`).join('')}</div>` : ''}</div>` : '';
+  const promptHtml = qMode
+    ? `<div class="lbl">마음싹의 질문에 바로 대답해요</div><div class="qzh">${esc(s.q)}${sayBtn(s.q)}</div>
+       ${SES.cue ? `<div class="cue">대답 방향 · ${esc(s.ko)}</div>` : `<div><button class="pill" style="border:0;margin-top:8px" data-act="cue">대답 방향 보기</button></div>`}`
+    : `<div class="lbl">${it.mode === 'learn' && !(c && c.lv >= 2) ? '이렇게 중국어로 말해 보세요' : '중국어로 바로 말해 보세요'}</div><div class="prompt">${esc(s.ko)}</div>`;
+  const ansHtml = SES.revealed ? `<div class="ans"><div class="zhs">${mark(s.zh, s.p)}${sayBtn(s.zh)}</div><div class="py">${esc(s.py)}</div>${qMode ? `<div class="ko">${esc(s.ko)}</div>` : ''}
+      <div class="fr">문장틀 <b>${esc(s.f)}</b></div><span class="rt">응답 ${fmtS(SES.rt)}${SES.hint ? ' · 힌트 ' + SES.hint + '단계' : ''}</span></div>` : '';
+  const stage2 = it.stage === 2 && SES.i > 0 && SES.q[SES.i - 1].stage === 1 && !SES.hint && !SES.revealed;
+  const line = stage2 ? '<b>2단계!</b> 이제 카드 없이, 한국어만 보고 말해요.' : SES.revealed ? pick(LINES.ans) : SES.hint ? (SES.hint === 1 ? '<b>문장틀</b>이에요. 빈칸만 채우면 돼요.' : '<b>짝꿍어휘</b>를 이어 붙여 봐요. 거의 다 왔어요!') : pick(qMode ? LINES.q : LINES.ko);
+  app.innerHTML = `${topBar(esc(SES.title), subLine(), 'quit')}${progBar()}
+    ${coach(line, stage2 ? 'win' : SES.hint ? 'think' : '')}
+    <section class="card">
+      <div class="meta"><span class="pill ${s.cp ? 'gold' : ''}">${s.cp ? '응용' : pad2(s.l) + '강'}</span>${it.tag ? `<span>${esc(it.tag)}</span>` : ''}${c && c.lv ? `<span>· ${LV[c.lv]}</span>` : ''}<span class="grow"></span>${SES.revealed ? '' : '<span class="timer" id="timer">0.0초</span>'}</div>
+      <div class="${SES.revealed ? '' : 'center'}">${promptHtml}${hintHtml}</div>${ansHtml}
+    </section>
+    ${SES.revealed
+      ? `<div class="btns"><button class="btn line" data-act="again">다시 연습 <span class="k">1</span></button><button class="btn primary" data-act="ok">혼자 말했어요 <span class="k">2</span></button></div>`
+      : `<div class="btns"><button class="btn secondary" data-act="hint" ${SES.hint >= 2 ? 'disabled' : ''}>마음싹 힌트 ${SES.hint}/2</button><button class="btn primary" data-act="reveal">말했어요 · 정답 보기</button></div>`}
+    <div class="keys">${SES.revealed ? '정답을 보지 않고 말했을 때만 ‘혼자 말했어요’ · 자가평가' : '먼저 소리 내어 말한 뒤 정답을 확인해요'}</div>`;
+  if (!SES.revealed) {
+    if (!SES.t0 && qMode && S.set.autoQ) setTimeout(() => speak(s.q), 250);
+    startTimer();
+  }
+}
+
+/* ═════════ 12. 결과 ═════════ */
+function renderResult() {
+  const all1 = SES.res.filter(r => !r.retry), spoken = all1.filter(r => r.mode !== 'order'), first = spoken.length ? spoken : all1, okN = first.filter(r => r.ok).length;
+  const rts = first.filter(r => r.ok).map(r => r.rt), avg = rts.length ? rts.reduce((a, b) => a + b, 0) / rts.length : 0;
+  const missed = [...new Set(first.filter(r => !r.ok).map(r => r.id))];
+  const k = counts(), L = SES.lesson ? LES(SES.lesson) : null, isOrder = SES.kind === 'order';
+  const stamp = isOrder ? '덩어리 맞추기 완료' : SES.kind === 'cp' ? (L.cp === 4 ? '툭! FINAL 완주' : '체크포인트 0' + L.cp + ' 통과') : SES.kind === 'review' ? '다시 툭! 완료' : pad2(SES.lesson) + '강 학습 완료';
+  const msg = isOrder ? (missed.length ? `${missed.length}문장은 순서가 헷갈렸어요. 내일 직접 말하기로 다시 만나요.` : '덩어리 순서가 다 잡혔어요! 이제 보지 않고 말해 봐요.')
+    : missed.length ? `${missed.length}문장은 내일 다시 불러올게요.` : '전부 혼자 말했어요! 간격을 두고 다시 확인할게요.';
+  blip('done');
+  const sec = L && L.cp ? [0, 30, 40, 60, 60][L.cp] : 0;
+  let next = '';
+  if (isOrder && SES.lesson && !L.cp) next = `<button class="btn primary" data-act="start" data-n="${SES.lesson}">이제 말하기 · 오늘의 5문장 →</button>`;
+  else if (SES.kind === 'learn' && SES.lesson) next = `<button class="btn primary" data-act="mine" data-l="${SES.lesson}">3단계 · 내 문장 툭!으로 응용 →</button>`;
+  else if (L && L.cp) next = `<button class="btn orange" data-act="speak" data-n="${SES.lesson}">${sec}초 말하기 미션</button>`;
+  else if (k.due) next = `<button class="btn primary" data-act="review">이어서 다시 툭! ${Math.min(k.due, REVIEW_CAP)}</button>`;
+  else if (SES.lesson) next = `<button class="btn primary" data-act="mine" data-l="${SES.lesson}">내 문장 툭!으로 응용</button>`;
+  app.innerHTML = `${topBar(esc(SES.title), '수고했어요')}
+    <div class="fill">
+      <div class="done"><button class="tuk hop" id="tukBtn" data-act="tuk">${tukSVG('happy')}</button><h3>${stamp}</h3><p id="bubble">${msg}</p></div>
+      <div class="stats"><div><strong style="color:var(--green)">${okN}/${first.length}</strong><span>${isOrder ? '한 번에 맞춤' : '처음에 혼자 말함'}</span></div>
+        <div><strong>${avg ? fmtS(avg) : '–'}</strong><span>${isOrder ? '평균 완성 시간' : '평균 응답 시간'}</span></div><div><strong>${SES.best}</strong><span>최고 연속 툭!</span></div></div>
+      <div class="box scroll" style="flex:1">${missed.length ? `<h4>다시 만날 문장</h4><ul class="slist" style="margin:0">${missed.map(id => { const s = BYID[id]; return `<li><span class="dot" style="background:var(--orange)"></span><div class="grow"><div class="zh">${esc(s.zh)}</div><small>${esc(s.py)} · ${esc(s.ko)}</small></div>${sayBtn(s.zh)}</li>`; }).join('')}</ul>`
+        : `<h4>${isOrder ? '덩어리 맞추기는 순서를 익히는 단계예요' : '스스로 판단한 기록이에요'}</h4><p class="note" style="margin:0">${isOrder ? '복습 간격은 보지 않고 말하기로 맞혀야 늘어나요. 맞춘 문장은 다음 학습일에 ‘다시 툭!’에서 말하기로 나와요.' : '응답 시간은 문제가 뜬 뒤 정답을 열기까지의 시간이에요. 발음 정확도를 채점한 점수가 아니에요.'}${L && L.cp ? '<br><br>이번 주 목표: <b>' + esc(CHAPTERS[L.cp - 1].goal) + '</b>' : ''}</p>`}</div>
+    </div>
+    <div class="btns">${next}</div>
+    <div class="btns"><button class="btn line" data-act="home">숲으로 돌아가기</button>${SES.kind === 'learn' && k.due ? `<button class="btn secondary" data-act="review">다시 툭! ${Math.min(k.due, REVIEW_CAP)}</button>` : ''}${L && L.cp === 4 ? '<button class="btn secondary" data-act="ba" data-tab="after">After 1분 말하기</button>' : ''}</div>`;
+}
+
+/* ═════════ 13. 말하기 미션 (시트) ═════════ */
+function speakMission(n) {
+  const ch = LES(n).cp, sec = [0, 30, 40, 60, 60][ch];
+  const frames = ALL.filter(s => chOf(s.l) === ch && !s.cp).map(s => s.f.split(' ___')[0].replace(/[，。？！]$/, '')).filter((v, i, a) => v && a.indexOf(v) === i).slice(0, 8);
+  openModal(`${sheetHead(`${sec}초 말하기 미션`)}
+    <p class="note" style="margin:0 0 8px">${esc(CHAPTERS[ch - 1].goal)}. 이 문장틀을 골라 멈추지 않고 이어 말해요. 휴대폰 녹음 앱을 같이 켜 두면 나중에 비교하기 좋아요.</p>
+    <div class="cues zh">${frames.map(f => `<span>${esc(f)}…</span>`).join('')}</div>
+    <div class="clock" id="mclock" style="margin:14px 0">${sec}</div>
+    <button class="btn primary" style="width:100%" data-act="mgo" data-sec="${sec}">시작</button>`);
+}
+
+/* ═════════ 14. 내 문장 툭! ═════════ */
+let mineSel = null, mineCount = 0, mineL = null;
+function renderMine(arg) {
+  if (arg !== undefined) mineL = arg && arg.l || null;
+  const seen = seenList().filter(s => !mineL || s.l === mineL);
+  if (mineSel && !seen.find(s => s.id === mineSel)) mineSel = null;
+  if (!mineSel && seen.length) { const rec = seen.find(s => C(s.id).lv === 2 && !(S.mine[s.id] || []).length) || seen[0]; mineSel = rec.id; mineCount = 0; }
+  if (!seen.length) {
+    app.innerHTML = `${topBar('내 문장 툭!', '문장틀에 내 이야기를 넣어 응용해요')}
+      <div class="fill">${coach('아직 익힌 문장이 없어요. 먼저 <b>오늘의 학습</b>으로 문장을 만나고 와요.')}<div class="grow"></div></div>
+      <div class="btns"><button class="btn primary" data-act="lesson" data-n="${nextLesson()}">${pad2(nextLesson())}강 시작하기</button></div>`;
+    return;
+  }
+  const s = BYID[mineSel], ext = s.l >= 6, saved = S.mine[s.id] || [];
+  app.innerHTML = `${topBar('내 문장 툭!', mineL ? pad2(mineL) + '강 문장 · 응용하기' : '문장틀에 내 이야기를 넣어 응용해요')}
+    <button class="picker" data-act="minepick"><span class="dot lv${C(s.id).lv}"></span><span class="zh">${esc(s.zh)}</span><small>문장 바꾸기 ▾</small></button>
+    <section class="card">
+      <div class="meta"><span class="pill">${pad2(s.l)}강</span><span>${LV[C(s.id).lv]}</span><span class="grow"></span>${sayBtn(s.zh)}</div>
+      <div class="zh" style="font-size:20px;font-weight:700;line-height:1.45">${mark(s.zh, s.p)}</div>
+      <div class="tiny">${esc(s.py)} · ${esc(s.ko)}</div>
+      <div class="hint">문장틀<div class="f">${esc(s.f)}</div>바꿔 넣을 재료 <b class="zh" style="color:var(--ink)">${esc(s.sw)}</b>${ext ? `<br>한 문장 더 붙이기 <b class="zh" style="color:var(--green)">因为… · 如果…就… · 我觉得…</b>` : ''}</div>
+      <div class="lab">내 문장 <span style="font-weight:500">(막히면 한국어를 섞어 적어도 OK)</span></div>
+      <textarea id="mytext" rows="2" placeholder="${esc(s.f.replace(/___/g, '…'))}"></textarea>
+      <div class="lab">소리 내어 말하기</div>
+      <div class="cnt3">${[1, 2, 3].map(i => `<button data-act="cnt" data-i="${i}" class="${mineCount >= i ? 'on' : ''}">${i}번</button>`).join('')}</div>
+    </section>
+    <div class="btns"><button class="btn line" data-act="minesaved" ${saved.length ? '' : 'disabled'} style="flex:0 0 108px">내 문장 ${saved.length}</button><button class="btn primary" data-act="minesave" id="minesave">${mineCount >= 3 ? '저장 · 응용 툭! 달성' : '저장하기'}</button></div>
+    <div class="keys" id="minekeys">${mineCount >= 3 ? '저장하면 숙련 단계가 ‘응용 툭!’이 돼요' : '3번 소리 내어 말하고 저장하면 ‘응용 툭!’ 달성'}</div>`;
+}
+function minePickSheet() {
+  const seen = seenList().filter(s => !mineL || s.l === mineL);
+  openModal(`${sheetHead('바꿔 볼 문장 고르기')}${mineL ? `<button class="pill" style="border:0;margin-bottom:6px" data-act="mineall">전체 문장 보기</button>` : ''}
+    <ul class="slist">${seen.map(x => `<li><span class="dot lv${C(x.id).lv}"></span><button class="grow" style="text-align:left;background:none;border:0;padding:0" data-act="minesel" data-id="${x.id}"><div class="zh">${esc(x.zh)}</div><small>${pad2(x.l)}강 · ${LV[C(x.id).lv]}${(S.mine[x.id] || []).length ? ' · 내 문장 ' + S.mine[x.id].length : ''}</small></button></li>`).join('')}</ul>`);
+}
+
+/* ═════════ 15. 성장 리포트 (탭) ═════════ */
+let repTab = 'map';
+function renderReport() {
+  const k = counts(), t = today();
+  let body = '';
+  if (repTab === 'map') {
+    const blocks = CHAPTERS.map(ch => `<div class="block"><h5>CH${ch.n} · ${pad2((ch.n - 1) * 5 + 1)}~${pad2(ch.n * 5)}강</h5><div class="g5">${ALL.filter(s => chOf(s.l) === ch.n).map(s => { const lv = (C(s.id) || {}).lv || 0; return `<button class="lv${lv} ${s.cp ? 'cpc' : ''}" data-act="cell" data-id="${s.id}" aria-label="${s.id}번 ${LV[lv]}"></button>`; }).join('')}</div></div>`).join('');
+    body = `<div class="box"><div class="meter" style="padding:0"><div class="nums"><span>도전 <b>${k.seen}</b> · 입에 붙음 <b>${k.solid}</b></span><span>25 → 50 → 75 → 100</span></div><div class="bar2"><u style="width:${k.seen}%"></u><i style="width:${k.solid}%"></i><s style="left:25%"></s><s style="left:50%"></s><s style="left:75%"></s></div></div></div>
+      <div class="box" style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center"><div class="blocks">${blocks}</div>
+      <div class="legend" style="margin-top:10px">${LV.map((n, i) => `<span><i class="lv${i}"></i>${n}</span>`).join('')}<span>칸 누르면 문장 보기</span></div></div>`;
+  } else if (repTab === 'log') {
+    const rts = S.rts.map(r => r[1]), avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0;
+    const weak = ALL.filter(s => { const c = C(s.id); return c && c.step != null && (c.due <= t || c.lapses >= 2); }).sort((a, b) => C(b.id).lapses - C(a.id).lapses);
+    body = `<div class="stats"><div><strong>${rts.length >= 6 ? fmtS(avg(rts.slice(0, 20))) : '–'}</strong><span>처음 20번 응답</span></div><div><strong style="color:var(--green)">${rts.length >= 6 ? fmtS(avg(rts.slice(-20))) : '–'}</strong><span>최근 20번 응답</span></div><div><strong>${S.days.length}</strong><span>학습한 날</span></div></div>
+      <div class="box lvbars">${[4, 3, 2, 1].map(lv => `<div class="r"><span>${LV[lv]}</span><div class="b"><i class="lv${lv}" style="width:${k.by[lv]}%"></i></div><span>${k.by[lv]}</span></div>`).join('')}
+        <p class="note" style="margin:6px 0 0">‘입에 붙음’은 <b>응용 툭!</b> 이상이에요. 완성 툭!은 다음 날·3일 뒤 복습에서 힌트 없이 이어서 성공하면 올라가요.</p></div>
+      <div class="box scroll" style="flex:1"><div class="row"><h4 class="grow" style="margin:0">복습이 필요한 문장 ${weak.length}</h4>${weak.length ? '<button class="pill" style="border:0" data-act="reviewweak">이것만 다시 툭!</button>' : ''}</div>
+        ${weak.length ? `<ul class="slist" style="margin:4px 0 0">${weak.slice(0, 20).map(s => `<li><span class="dot lv${C(s.id).lv}"></span><div class="grow"><div class="zh">${esc(s.zh)}</div><small>${pad2(s.l)}강${C(s.id).lapses ? ' · 놓친 횟수 ' + C(s.id).lapses : ''}</small></div></li>`).join('')}</ul>` : '<p class="note">지금은 없어요. 좋은 흐름이에요!</p>'}</div>`;
+  } else {
+    const B = S.ba.before, A = S.ba.after, v = (o, key, u) => o && o[key] != null && o[key] !== '' ? esc(o[key]) + u : '–';
+    const rows = [['첫 마디까지', 'first', '초'], ['말한 문장 수', 'sent', '개'], ['이어 말한 최대', 'chain', '문장'], ['멈칫한 횟수', 'pause', '번']];
+    body = `<div class="box"><div class="cmp"><span></span><span class="h">Before · 1강 전</span><span class="h">After · 20강 후</span>${rows.map(r => `<span>${r[0]}</span><span class="v">${v(B, r[1], r[2])}</span><span class="v a">${v(A, r[1], r[2])}</span>`).join('')}</div></div>
+      <div class="box scroll" style="flex:1"><h4>말한 내용 메모</h4><p class="note" style="margin:0"><b>Before</b> ${B && B.memo ? esc(B.memo) : '아직 없어요'}<br><b>After</b> ${A && A.memo ? esc(A.memo) : '아직 없어요'}</p></div>
+      <button class="btn primary" data-act="ba">실력 확인 툭! · 1분 말하기</button>`;
+  }
+  app.innerHTML = `${topBar('성장 기록', '자가평가 기반 기록 · 공인 평가가 아니에요')}
+    <div class="tabs">${[['map', '100문장 지도'], ['log', '숙련 · 복습'], ['ba', 'Before · After']].map(([id, n]) => `<button class="${repTab === id ? 'on' : ''}" data-act="rtab" data-t="${id}">${n}</button>`).join('')}</div>
+    <div class="fill">${body}</div>`;
+}
+
+/* ═════════ 16. 실력 확인 툭! (Before & After) ═════════ */
+let baTab = 'before', baFirst = null, baRun = false;
+function renderBA(arg) {
+  if (arg && arg.tab) baTab = arg.tab;
+  const rec = S.ba[baTab];
+  baFirst = null; baRun = false;
+  app.innerHTML = `${topBar('실력 확인 툭!', '같은 미션으로 1강 전과 20강 후를 비교해요')}
+    <div class="tabs">${[['before', 'Before · 1강 전'], ['after', 'After · 20강 후']].map(([id, n]) => `<button class="${baTab === id ? 'on' : ''}" data-act="batab" data-tab="${id}">${n}${S.ba[id] ? ' ✓' : ''}</button>`).join('')}</div>
+    ${coach('정확한 문장보다 <b>멈추지 않고 이어 말하기</b>가 목표예요. 휴대폰 녹음 앱을 같이 켜 두면 좋아요.')}
+    <section class="card" style="justify-content:center;text-align:center;gap:12px">
+      <div><span class="pill gold">미션</span><div class="prompt" style="margin-top:6px">${esc(BA_MISSION.title)}</div></div>
+      <div class="cues">${BA_MISSION.cues.map(c => `<span>${esc(c)}</span>`).join('')}</div>
+      <div class="clock" id="baclock">60</div>
+      <div class="note" id="banote">${rec ? `저장된 기록 · 첫 마디 ${rec.first ?? '–'}초 · ${rec.sent ?? '–'}문장 (${new Date(rec.at).toLocaleDateString('ko-KR')})` : '시작을 누르고, 말을 처음 꺼낸 순간 ‘첫 마디’를 눌러요.'}</div>
+    </section>
+    <div class="btns"><button class="btn primary" data-act="bago" id="bago">시작</button><button class="btn secondary" data-act="bafirst" id="bafirst" disabled>첫 마디 뗐어요!</button></div>
+    <div class="btns"><button class="btn line" data-act="baform">${rec ? '기록 고치기' : '기록 입력하기'}</button></div>`;
+}
+function baFormSheet() {
+  const r = S.ba[baTab] || {}, val = x => esc(x == null ? '' : x);
+  openModal(`${sheetHead((baTab === 'before' ? 'Before' : 'After') + ' 기록')}
+    <form class="form" id="baform"><div class="two">
+      <div><label for="ba-first">첫 마디까지 (초)</label><input type="number" inputmode="decimal" step="0.1" min="0" id="ba-first" value="${val(baFirst != null ? baFirst : r.first)}"></div>
+      <div><label for="ba-sent">말한 문장 수</label><input type="number" inputmode="numeric" min="0" id="ba-sent" value="${val(r.sent)}"></div>
+      <div><label for="ba-chain">이어 말한 최대 문장</label><input type="number" inputmode="numeric" min="0" id="ba-chain" value="${val(r.chain)}"></div>
+      <div><label for="ba-pause">길게 멈칫한 횟수</label><input type="number" inputmode="numeric" min="0" id="ba-pause" value="${val(r.pause)}"></div></div>
+      <label for="ba-memo">말한 내용 메모 (중국어·한국어 섞어도 OK)</label><textarea id="ba-memo" rows="3">${esc(r.memo || '')}</textarea>
+      <button class="btn primary" style="width:100%;margin-top:12px" type="submit">기록 저장</button></form>`);
+}
+
+/* ═════════ 17. 설정 · 백업 ═════════ */
+function settingsSheet() {
+  const st = S.set;
+  const seg = (key, opts) => `<div class="seg">${opts.map(([v, l]) => `<button class="${st[key] === v ? 'on' : ''}" data-act="set" data-k="${key}" data-v="${v}">${l}</button>`).join('')}</div>`;
+  openModal(`${sheetHead('설정')}
+    <div class="form">
+      <label>문제 방식</label>${seg('qmode', [['ko', '한국어 상황'], ['mix', '섞기 (추천)'], ['q', '중국어 질문']])}
+      <label>중국어 음성 속도 <span style="font-weight:500">· 목소리: ${esc(voiceName ? (/ting-?ting|婷婷/i.test(voiceName) ? 'Tingting (여자)' : voiceName + ' (여자)') : '기기 기본 중국어 음성')}</span></label>${seg('rate', [[0.7, '천천히'], [0.85, '보통'], [1, '빠르게']])}
+      ${voiceName && /ting-?ting|婷婷/i.test(voiceName) ? '' : '<p class="note" style="margin:4px 0 0">Tingting 목소리는 아이폰·아이패드·맥에 들어 있어요. 이 기기에는 없어서 가장 비슷한 여자 목소리로 읽어요.</p>'}
+      <label>배경음악</label><div class="seg"><button class="${st.bgm ? 'on' : ''}" data-act="tog" data-k="bgm">힐링 음악 ${st.bgm ? 'ON' : 'OFF'}</button></div>
+      <label>효과음 · 자동 읽기</label><div class="seg"><button class="${st.sound ? 'on' : ''}" data-act="tog" data-k="sound">효과음 ${st.sound ? 'ON' : 'OFF'}</button><button class="${st.autoQ ? 'on' : ''}" data-act="tog" data-k="autoQ">자동 읽기 ${st.autoQ ? 'ON' : 'OFF'}</button></div>
+    </div>
+    <div class="hr"></div>
+    <p class="note" style="margin:0 0 8px">기록은 로그인 없이 <b>이 브라우저에만</b> 저장돼요${storeOK ? '' : ' (지금은 저장소를 쓸 수 없어 창을 닫으면 사라져요)'}. 기기를 바꿀 때는 백업 코드를 옮겨 주세요.</p>
+    <div class="btns"><button class="btn secondary" data-act="export">백업 코드 복사</button><button class="btn secondary" data-act="importshow">백업 붙여넣기</button></div>
+    <div id="bk"></div>
+    <div class="hr"></div>
+    <p class="note" style="margin:0 0 10px">숙련 단계는 <b>자가평가</b>예요 · 100개 문장은 검수 전 <b>초안</b>이에요 · 음성은 기기의 중국어 TTS를 써요.</p>
+    <button class="btn line" style="width:100%;color:var(--red)" data-act="reset1">모든 기록 지우기</button>
+    <p class="tiny" style="text-align:center;margin:12px 0 0">© 2026 진담중국어 (Jindam Chinese). All rights reserved.</p>`);
+}
+
+/* ═════════ 18. 이벤트 ═════════ */
+document.addEventListener('click', e => {
+  const sayEl = e.target.closest('[data-say]'); if (sayEl) { speak(sayEl.dataset.say); return; }
+  const el = e.target.closest('[data-act]'); if (!el) { if (e.target.id === 'modal') closeModal(); return; }
+  const a = el.dataset.act, d = el.dataset;
+  switch (a) {
+    case 'home': go('home'); break;
+    case 'close': closeModal(); break;
+    case 'lessons': openLessons(+d.ch || 0); break;
+    case 'lesson': lessonSheet(+d.n); break;
+    case 'start': startLesson(+d.n); break;
+    case 'relesson': startSession('review', LES(+d.n).s.map((_, i) => { const s = BYID[(+d.n - 1) * 5 + i + 1]; return { id: s.id, mode: 'check', pm: pmodeFor(s, 'check') }; }), `${pad2(+d.n)}강 다시 툭!`); break;
+    case 'startcp': startCheckpoint(+d.n); break;
+    case 'review': startReview(); break;
+    case 'reviewweak': { const t = today(); startReview(ALL.filter(s => { const c = C(s.id); return c && c.step != null && (c.due <= t || c.lapses >= 2); }).slice(0, REVIEW_CAP).map(s => s.id)); break; }
+    case 'ordersheet': orderSheet(); break;
+    case 'ostart': startOrder(+d.n); break;
+    case 'omix': startOrderMix(); break;
+    case 'opick': case 'oback': orderAct(a, +d.i); break;
+    case 'oundo': case 'ohint': case 'onext': orderAct(a); break;
+    case 'pytog': S.set.py = S.set.py === false; save(); renderOrder(SES.q[SES.i], BYID[SES.q[SES.i].id]); break;
+    case 'mine': go('mine', d.l ? { l: +d.l } : null); break;
+    case 'mineall': closeModal(); mineL = null; go('mine', null); minePickSheet(); break;
+    case 'minepick': minePickSheet(); break;
+    case 'minesel': mineSel = +d.id; mineCount = 0; closeModal(); renderMine(); break;
+    case 'minesaved': { const arr = S.mine[mineSel] || [];
+      openModal(`${sheetHead('이 문장으로 만든 내 문장')}<ul class="slist">${arr.map((m, i) => `<li><div class="grow"><div class="zh">${esc(m.t)}</div><small>${new Date(m.at).toLocaleDateString('ko-KR')}</small></div><button class="pill" style="border:0" data-act="minedel" data-i="${i}">삭제</button></li>`).join('')}</ul>`); break; }
+    case 'minedel': { (S.mine[mineSel] || []).splice(+d.i, 1); save(); closeModal(); renderMine(); break; }
+    case 'cnt': { mineCount = Math.max(mineCount, +d.i); blip('tap'); document.querySelectorAll('.cnt3 button').forEach((b, j) => b.classList.toggle('on', j < mineCount));
+      if (mineCount >= 3) { $('#minesave').textContent = '저장 · 응용 툭! 달성'; $('#minekeys').textContent = '저장하면 숙련 단계가 ‘응용 툭!’이 돼요'; } break; }
+    case 'minesave': {
+      const v = ($('#mytext').value || '').trim(); if (!v) { toast('내 문장을 먼저 적어 주세요'); $('#mytext').focus(); break; }
+      (S.mine[mineSel] = S.mine[mineSel] || []).unshift({ t: v, at: Date.now() }); markDay();
+      const up = mineCount >= 3; if (up) { const c = card(mineSel); c.lv = Math.max(c.lv, 3); }
+      save(); mineCount = 0; renderMine();
+      toast(up ? '응용 툭! 달성 · 이제 내 이야기예요' : '저장했어요 · 3번 말하면 응용 툭!'); if (up) { blip('ok'); }
+      break; }
+    case 'report': go('report'); break;
+    case 'rtab': repTab = d.t; renderReport(); break;
+    case 'cell': { const s = BYID[+d.id], c = C(s.id) || { lv: 0 }; const mine = S.mine[s.id] || [];
+      openModal(`${sheetHead(`${pad2(s.l)}강 · ${s.id}번 문장`)}<div class="row" style="margin-bottom:8px"><span class="pill">${LV[c.lv]}</span>${s.cp ? '<span class="pill gold">응용</span>' : ''}</div>
+        ${c.lv ? `<div class="zh row" style="font-size:22px;font-weight:700">${esc(s.zh)}${sayBtn(s.zh)}</div><div class="tiny">${esc(s.py)}</div>` : '<div class="muted" style="font-weight:700">아직 만나지 않은 문장이에요</div>'}
+        <div style="margin-top:4px">${esc(s.ko)}</div>${c.step != null ? `<p class="note">다음 복습: ${c.due <= today() ? '오늘' : (c.due - today()) + '일 뒤'} · 혼자 말함 ${c.ok} · 다시 연습 ${c.ng}</p>` : ''}
+        ${mine.length ? `<div class="hr"></div><div class="lab" style="margin-top:0">내 문장</div>${mine.slice(0, 3).map(m => `<div class="zh" style="font-weight:700">${esc(m.t)}</div>`).join('')}` : ''}`); break; }
+    case 'ba': go('ba', d.tab ? { tab: d.tab } : null); break;
+    case 'batab': baTab = d.tab; renderBA(); break;
+    case 'baform': baFormSheet(); break;
+    case 'bago': {
+      if (baRun) break; baRun = true; baFirst = null; const t0 = performance.now(); el.disabled = true; el.textContent = '말하는 중…';
+      const fb = $('#bafirst'); fb.disabled = false; fb.dataset.t0 = t0; $('#banote').textContent = '말을 처음 꺼낸 순간 ‘첫 마디’를 눌러요.';
+      runClock(60, $('#baclock'), () => { baRun = false; el.disabled = false; el.textContent = '다시 하기'; fb.disabled = true; $('#banote').textContent = '끝! 기록을 남겨 주세요.'; baFormSheet(); });
+      break; }
+    case 'bafirst': { baFirst = Math.round((performance.now() - +el.dataset.t0) / 100) / 10; el.disabled = true; el.textContent = '첫 마디 ' + baFirst + '초'; blip('tap'); break; }
+    case 'settings': settingsSheet(); break;
+    case 'speak': speakMission(+d.n); break;
+    case 'mgo': { el.disabled = true; el.textContent = '말하는 중…'; runClock(+d.sec, $('#mclock'), () => { el.disabled = false; el.textContent = '다시 하기'; toast('수고했어요! 막힌 부분은 다시 툭!에서 만나요'); }); break; }
+    case 'tuk':
+      if (screen === 'home') { const tr = $('#trainer'); if (tr) { tr.classList.remove('bump'); void tr.offsetWidth; tr.classList.add('bump'); } }
+      if (screen === 'drill' && SES.ord && !SES.ord.done) orderAct('ohint');
+      else if (screen === 'drill' && SES.ord) say('맞춘 문장을 <b>소리 내어</b> 말해요. 그게 진짜 훈련이에요.', 'win');
+      else if (screen === 'drill' && !SES.revealed && SES.hint < 2) drillAct('hint');
+      else if (screen === 'drill') say(pick(LINES.ans), 'win');
+      else { S.tipI = ((S.tipI || 0) + 1) % TIPS.length; save(); say(TIPS[S.tipI], 'win'); }
+      break;
+    case 'reveal': case 'hint': case 'ok': case 'again': case 'cue': drillAct(a); break;
+    case 'quit':
+      if (SES && SES.res.length) openModal(`${sheetHead('여기서 그만할까요?')}<p class="note" style="margin:0 0 14px">지금까지 답한 ${SES.res.length}문장의 기록은 저장돼 있어요.</p><div class="btns"><button class="btn line" data-act="close">계속하기</button><button class="btn primary" data-act="home">그만하기</button></div>`);
+      else go('home');
+      break;
+    case 'set': { S.set[d.k] = d.k === 'rate' ? +d.v : d.v; save(); settingsSheet(); if (d.k === 'rate') speak('我想去中国旅游。'); break; }
+    case 'tog': S.set[d.k] = !S.set[d.k]; save(); if (d.k === 'bgm') { S.set.bgm ? BGM.start() : BGM.stop(); } settingsSheet(); break;
+    case 'bgm': { S.set.bgm = !S.set.bgm; save(); S.set.bgm ? BGM.start() : BGM.stop(); el.innerHTML = S.set.bgm ? IC.music : IC.mute; toast(S.set.bgm ? '힐링 음악을 켰어요' : '음악을 껐어요'); break; }
+    case 'export': {
+      const code = btoa(unescape(encodeURIComponent(JSON.stringify(S))));
+      $('#bk').innerHTML = `<textarea readonly rows="3" style="font-size:11px;margin-top:8px">${code}</textarea>`; $('#bk textarea').select();
+      (navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(code) : Promise.reject()).then(() => toast('백업 코드를 복사했어요'), () => toast('코드를 길게 눌러 직접 복사해 주세요'));
+      break; }
+    case 'importshow': $('#bk').innerHTML = `<textarea id="imp" rows="3" placeholder="백업 코드를 붙여 넣으세요" style="font-size:11px;margin-top:8px"></textarea><button class="btn primary" style="width:100%;margin-top:8px" data-act="import">이 기록으로 바꾸기</button>`; break;
+    case 'import': {
+      try { const o = JSON.parse(decodeURIComponent(escape(atob($('#imp').value.trim())))); if (!o || !o.cards) throw 0; S = Object.assign(blank(), o); S.set = Object.assign(blank().set, o.set); save(); toast('기록을 불러왔어요'); go('home'); }
+      catch (err) { toast('백업 코드를 확인해 주세요'); } break; }
+    case 'reset1': el.outerHTML = '<p class="note" style="color:var(--red);margin:0 0 8px">정말 지울까요? 되돌릴 수 없어요.</p><div class="btns"><button class="btn line" data-act="close">취소</button><button class="btn warn" data-act="reset2">모두 지우기</button></div>'; break;
+    case 'reset2': S = blank(); BGM.stop(); save(); toast('기록을 모두 지웠어요'); go('home'); break;
+  }
+});
+document.addEventListener('submit', e => {
+  if (e.target.id !== 'baform') return; e.preventDefault();
+  const v = id => { const x = $('#' + id).value.trim(); return x === '' ? null : x; };
+  S.ba[baTab] = { first: v('ba-first'), sent: v('ba-sent'), chain: v('ba-chain'), pause: v('ba-pause'), memo: $('#ba-memo').value, at: Date.now() };
+  markDay(); save(); closeModal(); toast((baTab === 'before' ? 'Before' : 'After') + ' 기록을 저장했어요'); renderBA();
+  say(baTab === 'before' ? '좋아요! 4주 뒤 <b>After</b>에서 오늘의 나와 비교해요.' : '4주 동안 수고했어요! <b>성장 기록</b>에서 비교해 보세요.', 'win'); burst();
+});
+document.addEventListener('keydown', e => {
+  if (e.target.matches('textarea,input')) return;
+  if (e.key === 'Escape' && !$('#modal').hidden) { closeModal(); return; }
+  if (screen !== 'drill' || !$('#modal').hidden || !SES) return;
+  const k = e.key.toLowerCase();
+  if (SES.ord) {
+    if (SES.ord.done) { if (k === 'enter' || k === ' ') { e.preventDefault(); orderAct('onext'); } return; }
+    if (/^[1-9]$/.test(k)) orderAct('opick', +k - 1); else if (k === 'backspace') { e.preventDefault(); orderAct('oundo'); } else if (k === 'h') orderAct('ohint');
+    return;
+  }
+  if (!SES.revealed) { if (k === ' ' || k === 'enter') { e.preventDefault(); drillAct('reveal'); } else if (k === 'h') drillAct('hint'); }
+  else { if (k === '1' || k === 'arrowleft') drillAct('again'); else if (k === '2' || k === 'enter' || k === 'arrowright') { e.preventDefault(); drillAct('ok'); } else if (k === 's') speak(BYID[SES.q[SES.i].id].zh); }
+});
+
+go('home');
+})();
+
+</script>
+</body>
+</html>
